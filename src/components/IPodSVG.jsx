@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const IPod = ({className, onChildClick}) => {
+const IPodSVG = ({className, onChildClick}) => {
 
    const handleClick = (event) => {
       console.log(event.target.id)
@@ -738,4 +738,4 @@ const IPod = ({className, onChildClick}) => {
    );
 }
   
-export default IPod;
+export default IPodSVG;

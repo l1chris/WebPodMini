@@ -1,19 +1,11 @@
-import IPodSVGComponent from './components/iPodSVG';
+import IPod from './components/IPod';
 import './App.css'
 
 
 const App: React.FC = () => {
-  
-  const handlePlayPause = (event) => {
-    console.log(event);
-    console.log('Play/Pause clicked');
-  };
-
   return (
     <div className="app-container">
-      <IPodSVGComponent
-        onPlayPause={handlePlayPause}
-      />
+      <IPod />
     </div>
   );
 };
