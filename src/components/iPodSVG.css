@@ -1,0 +1,10 @@
+.ipod-svg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ipod-svg {
+  width: 200px;
+  height: auto;
+}
