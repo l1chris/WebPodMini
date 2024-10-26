@@ -283,22 +283,6 @@ const IPod = ({onChildClick}) => {
         x2={651.27075}
         y2={529.38354}
       />
-      <clipPath clipPathUnits="userSpaceOnUse" id="clipPath4074">
-        <rect
-          rx={60.68668}
-          ry={7.7046309}
-          y={179.10139}
-          x={96}
-          height={704.46539}
-          width={557.22125}
-          id="rect4076"
-          style={{
-            fill: "url(#linearGradient4078)",
-            fillOpacity: 1,
-            stroke: "none",
-          }}
-        />
-      </clipPath>
       <linearGradient
         inkscape:collect="always"
         xlinkHref="#linearGradient4016"
@@ -332,21 +316,6 @@ const IPod = ({onChildClick}) => {
           id="feGaussianBlur4102"
         />
       </filter>
-      <clipPath clipPathUnits="userSpaceOnUse" id="clipPath4112">
-        <rect
-          style={{
-            fill: "#cdd7e3",
-            fillOpacity: 1,
-            stroke: "none",
-          }}
-          id="rect4114"
-          width={374.12}
-          height={289.29614}
-          x={187.25739}
-          y={95.167747}
-          ry={14.482048}
-        />
-      </clipPath>
       <linearGradient
         inkscape:collect="always"
         xlinkHref="#linearGradient4116"
@@ -423,54 +392,6 @@ const IPod = ({onChildClick}) => {
           id="feGaussianBlur4195"
         />
       </filter>
-      <clipPath clipPathUnits="userSpaceOnUse" id="clipPath4212">
-        <rect
-          style={{
-            fill: "#ff0000",
-            fillOpacity: 1,
-            stroke: "none",
-          }}
-          id="rect4214"
-          width={557.22125}
-          height={986.04608}
-          x={96}
-          y={48.124424}
-          ry={10.784237}
-          rx={60.68668}
-        />
-      </clipPath>
-      <clipPath clipPathUnits="userSpaceOnUse" id="clipPath4222">
-        <rect
-          style={{
-            fill: "#00ffff",
-            fillOpacity: 1,
-            stroke: "none",
-          }}
-          id="rect4224"
-          width={557.22125}
-          height={1008.8777}
-          x={96}
-          y={26.895227}
-          ry={11.033942}
-          rx={60.68668}
-        />
-      </clipPath>
-      <clipPath clipPathUnits="userSpaceOnUse" id="clipPath4232">
-        <rect
-          style={{
-            fill: "#ff00ff",
-            fillOpacity: 1,
-            stroke: "none",
-          }}
-          id="rect4234"
-          width={557.22125}
-          height={1008.8777}
-          x={96}
-          y={26.895227}
-          ry={11.033942}
-          rx={60.68668}
-        />
-      </clipPath>
       <linearGradient
         inkscape:collect="always"
         xlinkHref="#linearGradient4242"
@@ -608,69 +529,6 @@ const IPod = ({onChildClick}) => {
         ry={11.033942}
         rx={60.68668}
         transform="matrix(1,0,0,1.4321182,0,-229.59914)"
-        clipPath="url(#clipPath4074)"
-      />
-      <text
-        xmlSpace="preserve"
-        style={{
-          fontSize: 40,
-          fontStyle: "normal",
-          fontWeight: "normal",
-          fill: "#000000",
-          fillOpacity: 1,
-          stroke: "none",
-          fontFamily: "Bitstream Vera Sans",
-        }}
-        x={176.42239}
-        y={828.43701}
-        id="text3433"
-      >
-        <tspan
-          sodipodi:role="line"
-          id="tspan3435"
-          x={176.42239}
-          y={828.43701}
-        />
-      </text>
-      <path
-        style={{
-          fill: "#eceeed",
-          fillOpacity: 1,
-          stroke: "none",
-          filter: "url(#filter4193)",
-        }}
-        d="M 163.84567,-4.8325189 165.79622,707.11594 202.85655,673.9567 267.22449,199.97457 208.70818,104.39793 193.10383,-22.387412 z"
-        id="path4187"
-        inkscape:connector-curvature={0}
-        sodipodi:nodetypes="ccccccc"
-        clipPath="url(#clipPath4232)"
-      />
-      <path
-        style={{
-          fill: "#7b7e82",
-          fillOpacity: 1,
-          stroke: "none",
-          filter: "url(#filter4134)",
-        }}
-        d="m 99.32936,44.906346 c 0.58241,14.964673 7.93786,-2.261403 8.41607,12.690092 9.59483,299.986172 -1.90028,629.579992 -4.36661,927.471952 -5.263497,-313.38735 2.91045,-625.79942 -4.04946,-940.162044 z"
-        id="path4124"
-        inkscape:connector-curvature={0}
-        sodipodi:nodetypes="cscc"
-        clipPath="url(#clipPath4222)"
-      />
-      <path
-        style={{
-          fill: "url(#linearGradient4172)",
-          fillOpacity: 1,
-          stroke: "none",
-          filter: "url(#filter4158)",
-        }}
-        d="m 634.90198,46.510696 12.67854,0.975271 -1.95055,909.299573 z"
-        id="path4148"
-        inkscape:connector-curvature={0}
-        sodipodi:nodetypes="cccc"
-        transform="matrix(1,0,0,1.0231547,0,-22.343503)"
-        clipPath="url(#clipPath4212)"
       />
       <rect
         style={{
@@ -814,7 +672,6 @@ const IPod = ({onChildClick}) => {
           filter: "url(#filter4100)",
           strokeOpacity: 1,
         }}
-        clipPath="url(#clipPath4112)"
       />
     </g>
   </svg>
