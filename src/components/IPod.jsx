@@ -1,7 +1,16 @@
 import * as React from "react";
 
-const IPod = (props) => (
-  <svg
+const IPod = ({onChildClick}) => {
+
+   const handleClick = (event) => {
+      console.log(event.target.id)
+      // Send a message to the parent
+      onChildClick("Hello from the Child!");
+  };
+
+   return (
+      <div>
+         <svg
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:cc="http://creativecommons.org/ns#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -18,7 +27,6 @@ const IPod = (props) => (
     inkscape:version="0.48.4 r9939"
     sodipodi:docname="Mini_iPod.svg"
     inkscape:output_extension="org.inkscape.output.svg.inkscape"
-    {...props}
   >
     <defs id="defs4">
       <linearGradient id="linearGradient4242">
@@ -679,9 +687,12 @@ const IPod = (props) => (
         rx={60.68668}
       />
       <g id="g4197">
+         {/*
+            Click Wheel
+         */}  
         <path
           inkscape:connector-curvature={0}
-          id="path3190"
+          id="clickwheel-button"
           style={{
             fill: "url(#radialGradient4278)",
             fillOpacity: 1,
@@ -691,7 +702,11 @@ const IPod = (props) => (
           }}
           d="m 584.41327,720.19844 c 0,115.87087 -93.9322,209.80278 -209.8029,209.80278 -115.87081,0 -209.80287,-93.93191 -209.80287,-209.80278 0,-115.87086 93.93206,-209.80278 209.80287,-209.80278 115.8707,0 209.8029,93.93192 209.8029,209.80278 z"
         />
+        {/*
+            Center Button
+         */} 
         <path
+          onClick={handleClick} 
           d="m 443.64677,720.19844 c 0,38.12773 -30.9087,69.03635 -69.0364,69.03635 -38.1277,0 -69.03638,-30.90862 -69.03638,-69.03635 0,-38.12773 30.90868,-69.03636 69.03638,-69.03636 38.1277,0 69.0364,30.90863 69.0364,69.03636 z"
           style={{
             fill: "url(#radialGradient4282)",
@@ -700,7 +715,7 @@ const IPod = (props) => (
             strokeWidth: 1.5,
             strokeOpacity: 1,
           }}
-          id="path3192"
+          id="center-button"
           inkscape:connector-curvature={0}
         />
         <g
@@ -715,8 +730,9 @@ const IPod = (props) => (
             Menu
           */}
           <path
+            onClick={handleClick}
             inkscape:connector-curvature={0}
-            id="path6054"
+            id="menu-button"
             style={{
               fill: "#989e9c",
               fillOpacity: 1,
@@ -724,12 +740,12 @@ const IPod = (props) => (
             d="m 210.03808,60.443822 1.01015,-23.583791 5.80838,0 5.3033,14.647213 5.3033,-14.647213 5.55584,0 1.51523,23.583791 -4.29315,0 -1.26269,-13.987341 -4.29315,13.987341 -4.54568,0 -4.54569,-14.492417 -0.75761,14.492417 -4.79823,0 z m 30.30458,0 0,-23.583791 13.63706,0 0,3.535535 -8.96511,0 0,5.808377 8.46003,0 0,3.535534 -8.46003,0 0,6.313453 9.21764,0 0,4.390892 -13.88959,0 z m 19.30314,0 0,-23.583791 4.54722,0 9.23672,15.358736 0,-15.358736 4.35004,0 0,23.583791 -4.35004,0 -9.23672,-16.098719 0,16.098719 -4.54722,0 z m 24.00715,-23.583791 4.92449,0 0,17.046325 c 0,4.042583 8.20749,3.166812 8.20749,0 l 0,-17.046325 5.17703,0 0,17.551401 c 0,4.103744 -4.60882,6.031376 -9.21764,6.03239 -4.60882,0.001 -9.21764,-1.924589 -9.21764,-6.03239 l 0.12627,-17.551401 z"
           />
           {/*
-            Play / Pause
+            Play
           */}
           <path
-            onClick={props?.onClick}
+            onClick={handleClick}
             inkscape:connector-curvature={0}
-            id="path13828"
+            id="play-button"
             style={{
               fill: "#989e9c",
               fillOpacity: 1,
@@ -740,21 +756,26 @@ const IPod = (props) => (
             Left Button
           */}
           <path
+            onClick={handleClick}
             inkscape:connector-curvature={0}
-            id="path3222"
+            id="left-button"
             style={{
               fill: "#989e9c",
               fillOpacity: 1,
             }}
             d="m 65.442624,256.04517 18.409118,11.25 -0.0868,-22.5 -18.322319,11.25 z m -19.715884,11.33929 0,-23.125 -5.98214,0 0,23.21428 5.98214,-0.0893 z m 0.70662,-11.33929 18.409118,11.25 -0.0868,-22.5 -18.322319,11.25 z"
           />
+          {/*
+            Right Button
+          */}
           <use
-            xlinkHref="#path3222"
+            onClick={handleClick}
+            xlinkHref="#left-button"
             height={520}
             width={512}
             y={0}
             x={0}
-            id="use3237"
+            id="right-button"
             transform="matrix(-1,0,0,1,512,0)"
             style={{
               fill: "#989e9c",
@@ -797,5 +818,8 @@ const IPod = (props) => (
       />
     </g>
   </svg>
-);
+      </div>
+   );
+}
+  
 export default IPod;

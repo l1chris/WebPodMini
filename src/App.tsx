@@ -6,7 +6,6 @@ const App: React.FC = () => {
   
   const handlePlayPause = (event) => {
     console.log(event);
-    console.log('Clicked on:', event.target.id);
     console.log('Play/Pause clicked');
   };
 

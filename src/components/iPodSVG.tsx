@@ -11,7 +11,7 @@ type iPodSVGProps = {
 const IPodSVGComponent: React.FC<iPodSVGProps> = ({ onPlayPause }) => {
   return (
     <div className="ipod-svg-container">
-      <IPod className="ipod-svg"/>
+      <IPod className="ipod-svg" onChildClick={onPlayPause}/>
     </div>
   );
 };
