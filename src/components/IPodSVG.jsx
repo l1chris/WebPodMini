@@ -1,8 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 
 
-
-const IPodSVG = ({className, onBtnClick, onDimensionsChange}) => {
+const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
    const rectRef = useRef();
    const [rectDimensions, setRectDimensions] = useState({ width: 0, height: 0, x: 0, y: 0 });
 
@@ -19,7 +18,6 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange}) => {
           setRectDimensions(newDimensions);
           onDimensionsChange(newDimensions);
       }
-      console.log('onDimensionsChange')
    }, [onDimensionsChange]);
 
    const handleClick = (event) => {
@@ -74,10 +72,10 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange}) => {
          if (Math.abs(angleDifference) > angleThreshold) {
             if (angleDifference > 0) {
                setDirection("clockwise");
-               console.log(direction)
+               onScroll(direction);
             } else {
                setDirection("counterclockwise");
-               console.log(direction)
+               onScroll(direction);
             }
             setLastAngle(currentAngle);
          }

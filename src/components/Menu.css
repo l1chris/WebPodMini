@@ -1,0 +1,23 @@
+.menu {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  background-color: aqua;
+}
+
+.menu-items {
+}
+
+.menu-item {
+  font-size: 16px;
+}
+
+.menu-item.selected {
+  background-color: #d0d0d0;
+}
+
