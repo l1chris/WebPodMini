@@ -1,12 +1,93 @@
-import * as React from "react";
+import React, { useRef, useEffect, useState } from 'react';
 
-const IPodSVG = ({className, onChildClick}) => {
+
+
+const IPodSVG = ({className, onBtnClick, onDimensionsChange}) => {
+   const rectRef = useRef();
+   const [rectDimensions, setRectDimensions] = useState({ width: 0, height: 0, x: 0, y: 0 });
+
+   useEffect(() => {
+      if (rectRef.current) {
+         // Get the bounding box of the rect
+         const bbox = rectRef.current.getBoundingClientRect();
+         const newDimensions = {
+            width: bbox.width,
+            height: bbox.height,
+            x: bbox.x,
+            y: bbox.y,
+          };
+          setRectDimensions(newDimensions);
+          onDimensionsChange(newDimensions);
+      }
+      console.log('onDimensionsChange')
+   }, [onDimensionsChange]);
 
    const handleClick = (event) => {
       console.log(event.target.id)
       // Send a message to the parent
-      onChildClick("Hello from the Child!");
-  };
+      onBtnClick("Hello from the Child!");
+   };
+
+   const [isDragging, setIsDragging] = useState(false);
+   const [lastAngle, setLastAngle] = useState(null);
+   const [direction, setDirection] = useState(null);
+
+   const clickWheelRef = useRef(); 
+   const [centerX, setCenterX] = useState(0); 
+   const [centerY, setCenterY] = useState(0); 
+   const angleThreshold = 30;
+   
+   useEffect(() => {
+      if (clickWheelRef.current) {
+        const bbox = clickWheelRef.current.getBoundingClientRect(); 
+        setCenterX(bbox.x + bbox.width / 2);
+        setCenterY(bbox.y + bbox.height / 2);
+      }
+    }, []);
+
+   // Convert mouse position to angle
+   const calculateAngle = (x, y) => {
+      const dx = x - centerX;
+      const dy = y - centerY;
+      return Math.atan2(dy, dx) * (180 / Math.PI);
+   };
+
+   const handleMouseDown = (e) => {
+      setIsDragging(true);
+      const initialAngle = calculateAngle(e.clientX, e.clientY);
+      setLastAngle(initialAngle);
+   };
+
+   const handleMouseMove = (e) => {
+      if (!isDragging) return;
+
+      const currentAngle = calculateAngle(e.clientX, e.clientY);
+
+      if (lastAngle !== null) {
+         let angleDifference = currentAngle - lastAngle;
+
+         // Adjust for 180-degree boundary crossing
+         if (angleDifference > 180) angleDifference -= 360;
+         if (angleDifference < -180) angleDifference += 360;
+
+         // Update direction only if the angle change exceeds the threshold
+         if (Math.abs(angleDifference) > angleThreshold) {
+            if (angleDifference > 0) {
+               setDirection("clockwise");
+               console.log(direction)
+            } else {
+               setDirection("counterclockwise");
+               console.log(direction)
+            }
+            setLastAngle(currentAngle);
+         }
+      }
+   };
+
+   const handleMouseUp = () => {
+      setIsDragging(false);
+      setLastAngle(null);
+   };
 
    return (
       <div>
@@ -552,6 +633,10 @@ const IPodSVG = ({className, onChildClick}) => {
             Click Wheel
          */}  
          <path
+            ref={clickWheelRef}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
             inkscape:connector-curvature={0}
             id="clickwheel-button"
             style={{
@@ -718,6 +803,7 @@ const IPodSVG = ({className, onChildClick}) => {
         }}
       />
       <rect
+        ref={rectRef}
         ry={14.482048}
         y={95.167747}
         x={187.25739}
