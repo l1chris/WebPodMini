@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
-import './IPod.css';
-import { MenuProvider } from './MenuContext';
+import '../styles/iPod.css'
+import { MenuProvider } from '../contexts/MenuContext.js';
 import Menu from './Menu'
 
 import IPodSVG from './IPodSVG.jsx';

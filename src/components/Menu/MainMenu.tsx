@@ -1,10 +1,12 @@
-import { useState, useImperativeHandle, forwardRef } from 'react';
-import { useMenu } from './MenuContext';
+import { useImperativeHandle, forwardRef } from 'react';
+import { useMenu } from '../../contexts/MenuContext';
+import { useUpdateIndex } from '../../hooks/useUpdateIndex';
 
 enum MainMenuOption {
-  Songs = 'songs',
-  Albums = 'albums',
-  NowPlaying = 'nowPlaying'
+  Music = 'music',
+  Extras = 'extras',
+  Settings = 'settings',
+  ShuffleSongs = 'nowPlaying'
 }
 
 export type MenuHandle = {
@@ -13,31 +15,17 @@ export type MenuHandle = {
 };
 
 const MainMenu = forwardRef<MenuHandle>((props, ref) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(MainMenuOption).length - 1);
   const { navigateToMenu, goBack } = useMenu();
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'center-button') {
       // TODO: Go to currently selected menu
-      navigateToMenu(MainMenuOption.Songs);
+      // const selectedMenu = Object.values(MainMenuOption)[selectedIndex] as MainMenuOption;
+      navigateToMenu(MainMenuOption.Music);
     } else if (clickedButtonName === 'menu-button') {
       goBack()
     }
-  };
-
-  const updateIndex = (scrollDirection: string) => {
-    console.log(scrollDirection)
-    
-    setSelectedIndex((prev) => {
-      if (scrollDirection === 'counterclockwise') {
-        return prev > 0 ? prev - 1 : 0; 
-      } else if (scrollDirection === 'clockwise') {
-        return prev < Object.keys(MainMenuOption).length - 1 ? prev + 1 : Object.keys(MainMenuOption).length - 1;
-      }
-      return prev;
-    });
-
-    console.log(selectedIndex)
   };
 
   useImperativeHandle(ref, () => ({
@@ -48,18 +36,21 @@ const MainMenu = forwardRef<MenuHandle>((props, ref) => {
   return (
     <div className='menu'>
       <div className='title'>
-        Main Menu
+        webPod Mini
       </div>
       
       <div className="menu-items">
         <div className={`menu-item ${selectedIndex === 0 ? 'selected' : ''}`}>
-          Songs
+          Music
         </div>
         <div className={`menu-item ${selectedIndex === 1 ? 'selected' : ''}`}>
-          Albums
+          Extras
         </div>
         <div className={`menu-item ${selectedIndex === 2 ? 'selected' : ''}`}>
-          Now Playing
+          Settings
+        </div>
+        <div className={`menu-item ${selectedIndex === 3 ? 'selected' : ''}`}>
+          Shuffle Songs
         </div>
       </div>
     </div>

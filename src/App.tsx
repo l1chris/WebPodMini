@@ -1,5 +1,5 @@
 import IPod from './components/IPod';
-import './App.css'
+import './styles/App.css'
 
 
 const App: React.FC = () => {
