@@ -5,16 +5,25 @@
 }
 
 .title {
+  height: 10px;
   display: flex;
   justify-content: center;
-  background-color: aqua;
+  border-bottom:1px solid;
+  border-bottom-color: black;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.menu-items {
 }
 
 .menu-item {
-  font-size: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .menu-item.selected {
-  background-color: #d0d0d0;
+  color: #eeeeee ;
+  background-color: #212121;
 }
 
