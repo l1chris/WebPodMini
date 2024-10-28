@@ -21,9 +21,7 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
    }, [onDimensionsChange]);
 
    const handleClick = (event) => {
-      console.log(event.target.id)
-      // Send a message to the parent
-      onBtnClick("Hello from the Child!");
+      onBtnClick(event.target.id);
    };
 
    const [isDragging, setIsDragging] = useState(false);
@@ -679,7 +677,7 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
             {/* Transparent overlay for Menu Button */}
             <rect
                onClick={handleClick}
-               id="menu-button-overlay" 
+               id="menu-button" 
                x={200} 
                y={40} 
                width={100} 
@@ -705,7 +703,7 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
             {/* Transparent overlay for Play Button */}
             <rect
                onClick={handleClick}
-               id="play-button-overlay" 
+               id="play-button" 
                x={200} 
                y={430} 
                width={80} 
@@ -757,7 +755,7 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
             {/* Transparent overlay for Right Button */}
             <rect
                onClick={handleClick}
-               id="right-button-overlay" 
+               id="right-button" 
                x={410} 
                y={240} 
                width={100} 
