@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 import './IPod.css';
+import { MenuProvider } from './MenuContext';
 import Menu from './Menu'
 
 import IPodSVG from './IPodSVG.jsx';
@@ -10,7 +11,9 @@ const IPod: React.FC = () => {
   const menuRef = useRef();
 
   const handleBtnClick = (event) => {
-    console.log(event);
+    if (menuRef.current) {
+      menuRef.current.updateMenu(event);
+    }
   };
 
   const handleScroll = (event) => {
@@ -33,7 +36,9 @@ const IPod: React.FC = () => {
           border: '1px solid black', // Border for visibility, remove later
         }}
       >
-        <Menu ref={menuRef} />
+        <MenuProvider>
+          <Menu ref={menuRef} />
+        </MenuProvider>
       </div>
     </div>
   );

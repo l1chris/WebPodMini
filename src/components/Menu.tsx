@@ -1,59 +1,62 @@
-import {useState, useImperativeHandle, forwardRef} from 'react';
+import { useImperativeHandle, forwardRef, useRef } from 'react';
 import './Menu.css'
+import MainMenu from './MainMenu';
+import SongsMenu from './SongsMenu';
+import { useMenu } from './MenuContext';
 
-type MenuItem = {
-  id: number;
-  label: string;
-};
-
-const mainMenuItems: MenuItem[] = [
-  { id: 1, label: 'Item 1' },
-  { id: 2, label: 'Item 2' },
-  { id: 3, label: 'Item 3' },
-];
+enum MenuOption {
+  Home = 'home',
+  Songs = 'songs',
+  Albums = 'albums',
+  NowPlaying = 'nowPlaying'
+}
 
 interface MenuProps {
   scrollDirection: string | undefined;
 }
 
 export type MenuHandle = {
-  updateIndex: (message: string) => void;
+  updateIndex: (scrollDirection: string) => void;
+  updateMenu: (clickedButtonName: string) => void;
 };
 
 const Menu = forwardRef<MenuHandle, MenuProps>((props, ref) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const { menuPath } = useMenu();
+  const menuRef = useRef();
+  const currentMenu = menuPath[menuPath.length - 1] as MenuOption;
 
-  const updateIndex = (message: string) => {
-    setSelectedIndex((prev) => {
-      if (message === 'counterclockwise') {
-        return prev > 0 ? prev - 1 : 0; 
-      } else if (message === 'clockwise') {
-        return prev < mainMenuItems.length - 1 ? prev + 1 : mainMenuItems.length - 1;
-      }
-      return prev;
-    });
+  const updateIndex = (scrollDirection: string) => {
+    if (menuRef.current) {
+      menuRef.current.updateIndex(scrollDirection);
+    }
+  };
+
+  const updateMenu = (clickedButtonName: string) => {
+    console.log(clickedButtonName)
+    if (menuRef.current) {
+      menuRef.current.handleSelect(clickedButtonName);
+    }
   };
 
   useImperativeHandle(ref, () => ({
     updateIndex,
+    updateMenu
   }));
 
+  const renderMenuScreen = () => {
+    switch (currentMenu) {
+      case MenuOption.Home:
+        return <MainMenu ref={menuRef} />;
+      case MenuOption.Songs:
+        return <SongsMenu ref={menuRef} />;  
+      default:
+        return <MainMenu ref={menuRef} />;
+    }
+  };
+
   return (
-    <div className='menu'>
-      <div className='title'>
-        {mainMenuItems[selectedIndex].label}
-      </div>
-      
-      <div className="menu-items">
-        {mainMenuItems.map((item, index) => (
-          <div
-            key={index}
-            className={`menu-item ${index === selectedIndex ? 'selected' : ''}`}
-          >
-            {item.label}
-          </div>
-        ))}
-      </div>
+    <div>
+      {renderMenuScreen()}
     </div>
   );
 });
