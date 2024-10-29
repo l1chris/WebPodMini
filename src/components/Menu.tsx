@@ -2,7 +2,10 @@ import { useImperativeHandle, forwardRef, useRef } from 'react';
 import '../styles/Menu.css'
 import MainMenu from './Menu/MainMenu';
 import MusicMenu from './Menu/MusicMenu';
+import SongsMenu from './Menu/SongsMenu';
+import NowPlaying from './Menu/NowPlaying';
 import { useMenu } from '../contexts/MenuContext';
+import { AudioProvider } from '../contexts/AudioContext';
 
 enum MenuOption {
   Home = 'home',
@@ -49,16 +52,22 @@ const Menu = forwardRef<MenuHandle, MenuProps>((props, ref) => {
       case MenuOption.Home:
         return <MainMenu ref={menuRef} />;
       case MenuOption.Music:
-        return <MusicMenu ref={menuRef} />;  
+        return <MusicMenu ref={menuRef} />; 
+      case MenuOption.Songs:
+        return <SongsMenu ref={menuRef} />; 
+      case MenuOption.NowPlaying:
+        return <NowPlaying ref={menuRef} />;  
       default:
         return <MainMenu ref={menuRef} />;
     }
   };
 
   return (
-    <div>
-      {renderMenuScreen()}
-    </div>
+    <AudioProvider>
+      <div>
+        {renderMenuScreen()}
+      </div>
+    </AudioProvider>
   );
 });
 
