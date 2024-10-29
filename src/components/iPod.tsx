@@ -33,7 +33,6 @@ const IPod: React.FC = () => {
           left: rectDimensions.x * 0.93,
           width: rectDimensions.width * 0.93,
           height: rectDimensions.height * 0.9,
-          border: '1px solid black', // Border for visibility, remove later
         }}
       >
         <MenuProvider>
