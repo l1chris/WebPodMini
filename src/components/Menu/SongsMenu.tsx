@@ -41,9 +41,11 @@ const SongsMenu = forwardRef<MenuHandle>((props, ref) => {
       <div className="menu-items">
         <div className={`menu-item ${selectedIndex === 0 ? 'selected' : ''}`}>
           Song 1
+          <span className="chevron right"></span>
         </div>
         <div className={`menu-item ${selectedIndex === 1 ? 'selected' : ''}`}>
           Song 2
+          <span className="chevron right"></span>
         </div>
       </div>
     </div>

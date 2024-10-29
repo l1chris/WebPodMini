@@ -12,7 +12,7 @@ type AudioContextType = {
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
 export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const audioRef = useRef(new Audio('public/music/BetteDavisEyes.mp3'));
+  const audioRef = useRef(new Audio('music/BetteDavisEyes.mp3'));
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);

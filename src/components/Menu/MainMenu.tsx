@@ -42,15 +42,19 @@ const MainMenu = forwardRef<MenuHandle>((props, ref) => {
       <div className="menu-items">
         <div className={`menu-item ${selectedIndex === 0 ? 'selected' : ''}`}>
           Music
+          <span className="chevron right"></span>
         </div>
         <div className={`menu-item ${selectedIndex === 1 ? 'selected' : ''}`}>
           Extras
+          <span className="chevron right"></span>
         </div>
         <div className={`menu-item ${selectedIndex === 2 ? 'selected' : ''}`}>
           Settings
+          <span className="chevron right"></span>
         </div>
         <div className={`menu-item ${selectedIndex === 3 ? 'selected' : ''}`}>
           Shuffle Songs
+          <span className="chevron right"></span>
         </div>
       </div>
     </div>
