@@ -32,6 +32,10 @@ const SongsMenu = forwardRef<MenuHandle>((props, ref) => {
     handleSelect
   }));
 
+  const getSongNameFromFilePath = (path: string) => {
+    return path.match(/\/([^/]+)\.mp3$/)?.[1] ?? 'Unknown Title';
+  }
+
   return (
     <div className='menu'>
       <div className='title'>
@@ -40,11 +44,11 @@ const SongsMenu = forwardRef<MenuHandle>((props, ref) => {
       
       <div className="menu-items">
         <div className={`menu-item ${selectedIndex === 0 ? 'selected' : ''}`}>
-          Song 1
+          {getSongNameFromFilePath(SongOption.Song1)}
           <span className="chevron right"></span>
         </div>
         <div className={`menu-item ${selectedIndex === 1 ? 'selected' : ''}`}>
-          Song 2
+          {getSongNameFromFilePath(SongOption.Song2)}
           <span className="chevron right"></span>
         </div>
       </div>
