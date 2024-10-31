@@ -6,9 +6,7 @@ type AudioContextType = {
   duration: number;
   play: () => void;
   pause: () => void;
-  seek: (time: number) => void;
   setAudioSource: (src: string) => void;
-  volume: number;
   changeVolume: (scrollDirection: string) => void;
 };
 
@@ -54,11 +52,6 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setIsPlaying(false);
   };
 
-  const seek = (time: number) => {
-    audioRef.current.currentTime = time;
-    setCurrentTime(time);
-  };
-
   const setAudioSource = (src: string) => {
     setAudioSrc(src);
   };
@@ -89,7 +82,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [audioSrc]);
 
   return (
-    <AudioContext.Provider value={{ isPlaying, currentTime, duration, play, pause, seek, setAudioSource, volume, changeVolume }}>
+    <AudioContext.Provider value={{ isPlaying, currentTime, duration, play, pause, setAudioSource, changeVolume }}>
       {children}
     </AudioContext.Provider>
   );

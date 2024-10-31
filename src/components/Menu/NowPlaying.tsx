@@ -1,7 +1,6 @@
 import { useImperativeHandle, useEffect, useState, forwardRef } from 'react';
 import { useAudio } from '../../contexts/AudioContext';
 import { useMenu } from '../../contexts/MenuContext';
-import { useUpdateIndex } from '../../hooks/useUpdateIndex';
 import ProgressBar from './NowPlaying/ProgressBar';
 
 export type MenuHandle = {
@@ -15,7 +14,7 @@ interface NowPlayingProps {
 
 const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
   const { goBack } = useMenu();
-  const { isPlaying, currentTime, duration, play, pause, seek, setAudioSource, volume, changeVolume } = useAudio();
+  const { isPlaying, currentTime, duration, play, pause, setAudioSource, changeVolume } = useAudio();
 
   const [isSongLoaded, setIsSongLoaded] = useState(false);
   const [songName, setSongName] = useState('');
