@@ -8,6 +8,8 @@ type AudioContextType = {
   pause: () => void;
   seek: (time: number) => void;
   setAudioSource: (src: string) => void;
+  volume: number;
+  changeVolume: (scrollDirection: string) => void;
 };
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
@@ -19,6 +21,28 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [audioSrc, setAudioSrc] = useState<string | null>(null);
+  const [volume, setVolume] = useState(1); // Initialize volume to 1 (max)
+
+  const changeVolume = (scrollDirection: string) => {
+    let currentVolume = audioRef.current.volume
+    
+    if (scrollDirection === 'counterclockwise') {
+      if (currentVolume > 0) {
+        currentVolume = Math.max(0, Math.round((currentVolume - 0.1) * 10) / 10);
+        setVolume(currentVolume);
+      } else {
+        setVolume(0);
+      }
+    } else if (scrollDirection === 'clockwise') {
+      if (currentVolume < 1) {
+        currentVolume = Math.min(1, Math.round((currentVolume + 0.1) * 10) / 10);
+      setVolume(currentVolume);
+      } else {
+        setVolume(1);
+      }
+    }
+    audioRef.current.volume = volume
+  };
 
   const play = () => {
     audioRef.current.play();
@@ -65,7 +89,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [audioSrc]);
 
   return (
-    <AudioContext.Provider value={{ isPlaying, currentTime, duration, play, pause, seek, setAudioSource }}>
+    <AudioContext.Provider value={{ isPlaying, currentTime, duration, play, pause, seek, setAudioSource, volume, changeVolume }}>
       {children}
     </AudioContext.Provider>
   );
