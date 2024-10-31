@@ -16,7 +16,7 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
   const { updateIndex } = useUpdateIndex(0);
   const { goBack } = useMenu();
   const { isPlaying, currentTime, duration, play, pause, seek, setAudioSource } = useAudio();
-  
+
   const [isSongLoaded, setIsSongLoaded] = useState(false);
 
   useEffect(() => {
@@ -36,7 +36,6 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
           setIsSongLoaded(false);
         }
       }
-
     } else if (clickedButtonName === 'menu-button') {
       goBack()
     }

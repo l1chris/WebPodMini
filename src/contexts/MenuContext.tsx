@@ -4,6 +4,8 @@ type MenuContextType = {
   menuPath: string[];
   navigateToMenu: (menu: string) => void;
   goBack: () => void;
+  songPath: string;
+  updateSongPath: (path: string) => void;
 };
 
 const MenuContext = createContext<MenuContextType | undefined>(undefined);
@@ -15,6 +17,7 @@ type MenuProviderProps = {
 export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
   const [menuPath, setMenuPath] = useState<string[]>(['home']);
   const [menuHistory, setMenuHistory] = useState<string[][]>([]);
+  const [songPath, setSongPath] = useState<string>('');
 
   const navigateToMenu = (menu: string) => {
     setMenuHistory((prev) => [...prev, menuPath]);
@@ -25,13 +28,20 @@ export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
     setMenuHistory((prev) => {
       const newHistory = [...prev];
       const previousMenu = newHistory.pop();
-      if (previousMenu) setMenuPath(previousMenu);
+      if (previousMenu) {
+        setMenuPath(previousMenu);
+      }
       return newHistory;
     });
   };
 
+  const updateSongPath = (path: string) => {
+    setSongPath(path);
+    console.log(songPath);
+  }
+
   return (
-    <MenuContext.Provider value={{ menuPath, navigateToMenu, goBack }}>
+    <MenuContext.Provider value={{ menuPath, navigateToMenu, goBack, songPath, updateSongPath }}>
       {children}
     </MenuContext.Provider>
   );

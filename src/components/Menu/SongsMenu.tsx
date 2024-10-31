@@ -3,8 +3,8 @@ import { useMenu } from '../../contexts/MenuContext';
 import { useUpdateIndex } from '../../hooks/useUpdateIndex';
 
 enum SongOption {
-  Song1 = 'song1',
-  Song2 = 'song2'
+  Song1 = '/music/BetteDavisEyes.mp3',
+  Song2 = '/music/RunningUpThatHill.mp3'
 }
 
 export type MenuHandle = {
@@ -14,12 +14,12 @@ export type MenuHandle = {
 
 const SongsMenu = forwardRef<MenuHandle>((props, ref) => {
   const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(SongOption).length - 1);
-  const { navigateToMenu, goBack } = useMenu();
+  const { navigateToMenu, goBack, updateSongPath } = useMenu();
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'center-button') {
-      // TODO: Go to currently selected menu
-      // const selectedSong = Object.values(SongOption)[selectedIndex] as SongOption;
+      const selectedSong = Object.values(SongOption)[selectedIndex] as SongOption;
+      updateSongPath(selectedSong)
       
       navigateToMenu('nowPlaying');
     } else if (clickedButtonName === 'menu-button') {

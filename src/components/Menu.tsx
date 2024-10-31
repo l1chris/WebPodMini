@@ -25,7 +25,7 @@ export type MenuHandle = {
 };
 
 const Menu = forwardRef<MenuHandle, MenuProps>((props, ref) => {
-  const { menuPath } = useMenu();
+  const { menuPath, songPath } = useMenu();
   const menuRef = useRef();
   const currentMenu = menuPath[menuPath.length - 1] as MenuOption;
 
@@ -56,7 +56,7 @@ const Menu = forwardRef<MenuHandle, MenuProps>((props, ref) => {
       case MenuOption.Songs:
         return <SongsMenu ref={menuRef} />; 
       case MenuOption.NowPlaying:
-        return <NowPlaying ref={menuRef} song={'/music/BetteDavisEyes.mp3'}/>;  
+        return <NowPlaying ref={menuRef} song={songPath}/>;  
       default:
         return <MainMenu ref={menuRef} />;
     }
