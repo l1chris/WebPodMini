@@ -56,7 +56,7 @@ const Menu = forwardRef<MenuHandle, MenuProps>((props, ref) => {
       case MenuOption.Songs:
         return <SongsMenu ref={menuRef} />; 
       case MenuOption.NowPlaying:
-        return <NowPlaying ref={menuRef} />;  
+        return <NowPlaying ref={menuRef} song={'/music/BetteDavisEyes.mp3'}/>;  
       default:
         return <MainMenu ref={menuRef} />;
     }

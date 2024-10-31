@@ -1,4 +1,4 @@
-import { useImperativeHandle, forwardRef } from 'react';
+import { useImperativeHandle, useEffect, useState, forwardRef } from 'react';
 import { useAudio } from '../../contexts/AudioContext';
 import { useMenu } from '../../contexts/MenuContext';
 import { useUpdateIndex } from '../../hooks/useUpdateIndex';
@@ -15,14 +15,26 @@ interface NowPlayingProps {
 const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
   const { updateIndex } = useUpdateIndex(0);
   const { goBack } = useMenu();
-  const { isPlaying, currentTime, duration, play, pause, seek } = useAudio();
+  const { isPlaying, currentTime, duration, play, pause, seek, setAudioSource } = useAudio();
+  
+  const [isSongLoaded, setIsSongLoaded] = useState(false);
+
+  useEffect(() => {
+    if (props.song) {
+      setAudioSource(props.song);
+      setIsSongLoaded(true);
+    }
+  }, [props.song, setAudioSource]);
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'play-button') {
       if (isPlaying) {
         pause()
       } else {
-        play()
+        if (isSongLoaded) {
+          play();            
+          setIsSongLoaded(false);
+        }
       }
 
     } else if (clickedButtonName === 'menu-button') {
@@ -43,6 +55,7 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
       
       <div className="menu-items">
         props.song
+        <div>Current Time: {currentTime.toFixed(2)} / {duration.toFixed(2)}</div>
       </div>
     </div>
   );

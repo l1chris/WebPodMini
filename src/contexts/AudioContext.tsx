@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 type AudioContextType = {
   isPlaying: boolean;
@@ -7,15 +7,18 @@ type AudioContextType = {
   play: () => void;
   pause: () => void;
   seek: (time: number) => void;
+  setAudioSource: (src: string) => void;
 };
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
 export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const audioRef = useRef(new Audio('music/BetteDavisEyes.mp3'));
+  const audioRef = useRef<HTMLAudioElement>(new Audio());
+  
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [audioSrc, setAudioSrc] = useState<string | null>(null);
 
   const play = () => {
     audioRef.current.play();
@@ -32,9 +35,14 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setCurrentTime(time);
   };
 
+  const setAudioSource = (src: string) => {
+    setAudioSrc(src);
+  };
+
   // Update currentTime and duration
-  React.useEffect(() => {
+  useEffect(() => {
     const audio = audioRef.current;
+
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
     const handleLoadedMetadata = () => setDuration(audio.duration);
 
@@ -47,8 +55,17 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     };
   }, []);
 
+  // Update audio source when audioSrc changes
+  useEffect(() => {
+    if (audioSrc) {
+      audioRef.current.src = audioSrc;
+      audioRef.current.load();
+      play();
+    }
+  }, [audioSrc]);
+
   return (
-    <AudioContext.Provider value={{ isPlaying, currentTime, duration, play, pause, seek }}>
+    <AudioContext.Provider value={{ isPlaying, currentTime, duration, play, pause, seek, setAudioSource }}>
       {children}
     </AudioContext.Provider>
   );
