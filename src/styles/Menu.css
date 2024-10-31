@@ -14,9 +14,6 @@
   padding-bottom: 2px;
 }
 
-.menu-items {
-}
-
 .menu-item {
   display: flex;
   justify-content: space-between;
@@ -31,6 +28,20 @@
   background-color: #212121;
 }
 
+.song-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80%;
+  text-align: center;
+}
+
+.song-info-title {
+  padding-top: 15px;
+  padding-bottom: 20px;
+}
 
 .chevron::before {
 	border-style: solid;

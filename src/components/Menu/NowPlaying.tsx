@@ -18,11 +18,15 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
   const { isPlaying, currentTime, duration, play, pause, seek, setAudioSource } = useAudio();
 
   const [isSongLoaded, setIsSongLoaded] = useState(false);
+  const [songName, setSongName] = useState('');
 
   useEffect(() => {
     if (props.song) {
       setAudioSource(props.song);
       setIsSongLoaded(true);
+
+      const name = props.song.match(/\/([^/]+)\.mp3$/)?.[1] ?? 'Unknown Title';
+      setSongName(name);
     }
   }, [props.song, setAudioSource]);
 
@@ -41,6 +45,12 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
     }
   };
 
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  }
+
   useImperativeHandle(ref, () => ({
     handleSelect,
     updateIndex
@@ -52,9 +62,9 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
         Now Playing
       </div>
       
-      <div className="menu-items">
-        props.song
-        <div>Current Time: {currentTime.toFixed(2)} / {duration.toFixed(2)}</div>
+      <div className="song-info">
+        <div className='song-info-title'>{songName}</div>
+        <div>Current Time: {formatTime(currentTime)} / {formatTime(duration)}</div>
       </div>
     </div>
   );

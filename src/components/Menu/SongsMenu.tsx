@@ -4,7 +4,7 @@ import { useUpdateIndex } from '../../hooks/useUpdateIndex';
 
 enum SongOption {
   Song1 = '/music/BetteDavisEyes.mp3',
-  Song2 = '/music/RunningUpThatHill.mp3'
+  Song2 = '/music/RunningUp.mp3'
 }
 
 export type MenuHandle = {
