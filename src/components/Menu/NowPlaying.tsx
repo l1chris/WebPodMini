@@ -2,6 +2,7 @@ import { useImperativeHandle, useEffect, useState, forwardRef } from 'react';
 import { useAudio } from '../../contexts/AudioContext';
 import { useMenu } from '../../contexts/MenuContext';
 import { useUpdateIndex } from '../../hooks/useUpdateIndex';
+import ProgressBar from './NowPlaying/ProgressBar';
 
 export type MenuHandle = {
   updateIndex: (scrollDirection: string) => void;
@@ -64,7 +65,11 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
       
       <div className="song-info">
         <div className='song-info-title'>{songName}</div>
-        <div>Current Time: {formatTime(currentTime)} / {formatTime(duration)}</div>
+        <ProgressBar currentTime={currentTime} duration={duration} />
+        <div className='song-info-time'>
+          <div>{formatTime(currentTime)}</div>
+          <div>{formatTime(duration)}</div>
+        </div>
       </div>
     </div>
   );

@@ -39,8 +39,14 @@
 }
 
 .song-info-title {
-  padding-top: 15px;
+  padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.song-info-time {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
 }
 
 .chevron::before {
