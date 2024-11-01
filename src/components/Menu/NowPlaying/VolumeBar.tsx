@@ -9,7 +9,6 @@ const VolumeBar: React.FC<VolumeBarProps> = ({ volume }) => {
   const [currentVolume, setCurrentVolume] = useState(volume);
 
   useEffect(() => {
-    console.log(volume)
     setCurrentVolume(volume);
   }, [volume]);
 
