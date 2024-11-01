@@ -4,8 +4,8 @@ import { useMenu } from '../../contexts/MenuContext';
 import '../../styles/components/NowPlaying.css'
 import ProgressBar from './NowPlaying/ProgressBar';
 import VolumeBar from './NowPlaying/VolumeBar';
-import MuteIcon from '../Icon/MuteIcon';
-import SpeakerIcon from '../Icon/SpeakerIcon';
+import MuteIcon from '../Icon/MuteIcon.jsx';
+import SpeakerIcon from '../Icon/SpeakerIcon.jsx';
 
 export type MenuHandle = {
   updateIndex: (scrollDirection: string) => void;
