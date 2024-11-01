@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 
 const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
    const rectRef = useRef();
+   const lastEventTime = useRef(0); 
    const [rectDimensions, setRectDimensions] = useState({ width: 0, height: 0, x: 0, y: 0 });
 
    useEffect(() => {
@@ -56,33 +57,46 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
 
    const handleMouseMove = (e) => {
       if (!isDragging) return;
-
+    
       const currentAngle = calculateAngle(e.clientX, e.clientY);
-
+      const now = Date.now();
+    
       if (lastAngle !== null) {
-         let angleDifference = currentAngle - lastAngle;
-
-         // Adjust for 180-degree boundary crossing
-         if (angleDifference > 180) angleDifference -= 360;
-         if (angleDifference < -180) angleDifference += 360;
-
-         // Update direction only if the angle change exceeds the threshold
-         if (Math.abs(angleDifference) > angleThreshold) {
-            if (angleDifference > 0) {
-               setDirection("clockwise");
-               onScroll(direction);
-            } else {
-               setDirection("counterclockwise");
-               onScroll(direction);
+        let angleDifference = currentAngle - lastAngle;
+    
+        // Adjust for crossing 180-degree boundary
+        if (angleDifference > 180) angleDifference -= 360;
+        if (angleDifference < -180) angleDifference += 360;
+    
+        // Only proceed if angle change exceeds threshold
+        if (Math.abs(angleDifference) > angleThreshold) {
+          const newDirection = angleDifference > 0 ? "clockwise" : "counterclockwise";
+    
+          // Check if the direction is the same as the last detected direction
+          if (direction === newDirection) {
+            const timeSinceLastEvent = now - lastEventTime.current;
+            
+            // If the last event was recent and in the same direction, emit the event
+            if (timeSinceLastEvent < 200) {
+              onScroll(newDirection);
             }
-            setLastAngle(currentAngle);
-         }
+          }
+    
+          // Update state with the latest information
+          setDirection(newDirection);
+          setLastAngle(currentAngle);
+          lastEventTime.current = now;
+        }
       }
-   };
+    };
 
    const handleMouseUp = () => {
       setIsDragging(false);
       setLastAngle(null);
+   };
+
+   const handleMouseLeave = () => {
+      setIsDragging(false);
    };
 
    return (
@@ -623,7 +637,7 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
             rx={60.68668}
          />
 
-      <g id="g4197">
+      <g id="g4197" onMouseLeave={handleMouseLeave}>
 
          {/*
             Click Wheel
@@ -649,7 +663,7 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
             Center Button
          */} 
          <path
-            onClick={handleClick} 
+            onClick={handleClick}
             d="m 443.64677,720.19844 c 0,38.12773 -30.9087,69.03635 -69.0364,69.03635 -38.1277,0 -69.03638,-30.90862 -69.03638,-69.03635 0,-38.12773 30.90868,-69.03636 69.03638,-69.03636 38.1277,0 69.0364,30.90863 69.0364,69.03636 z"
             style={{
                fill: "url(#radialGradient4282)",
