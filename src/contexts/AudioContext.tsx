@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { SongOption } from '../constants/songOptions';
+import { useMenu } from '../contexts/MenuContext';
 
 type AudioContextType = {
   isPlaying: boolean;
@@ -9,11 +11,14 @@ type AudioContextType = {
   pause: () => void;
   setAudioSource: (src: string) => void;
   changeVolume: (scrollDirection: string) => void;
+  playNextSong: (currentSongPath: string) => void;
 };
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
 export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { setSongPath } = useMenu();
+
   const audioRef = useRef<HTMLAudioElement>(new Audio());
   
   const [isPlaying, setIsPlaying] = useState(false);
@@ -42,12 +47,11 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           newVolume = Math.max(0, Math.round((newVolume + 0.1) * 10) / 10);
         }
       }
-      console.log('setVolume')
       setVolume(newVolume);
       audioRef.current.volume = newVolume;
     }, 100);
 
-    // Set the new timeout ID
+    // Set new timeout
     setVolumeChangeTimeout(newVolumeChangeTimeout);
   };
   
@@ -63,6 +67,15 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const setAudioSource = (src: string) => {
     setAudioSrc(src);
+  };
+
+  const playNextSong = (currentSongPath: string) => {
+    const songs = Object.values(SongOption) as string[]; 
+    const currentIndex = songs.indexOf(currentSongPath);
+    const nextIndex = (currentIndex + 1) % songs.length;
+    const nextSong = songs[nextIndex] as SongOption;
+    
+    setSongPath(nextSong);
   };
 
   // Update currentTime and duration
@@ -91,7 +104,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [audioSrc]);
 
   return (
-    <AudioContext.Provider value={{ isPlaying, currentTime, duration, volume, play, pause, setAudioSource, changeVolume }}>
+    <AudioContext.Provider value={{ isPlaying, currentTime, duration, volume, play, pause, setAudioSource, changeVolume, playNextSong }}>
       {children}
     </AudioContext.Provider>
   );

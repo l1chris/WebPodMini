@@ -5,7 +5,7 @@ type MenuContextType = {
   navigateToMenu: (menu: string) => void;
   goBack: () => void;
   songPath: string;
-  updateSongPath: (path: string) => void;
+  setSongPath: (path: string) => void;
 };
 
 const MenuContext = createContext<MenuContextType | undefined>(undefined);
@@ -35,13 +35,8 @@ export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
     });
   };
 
-  const updateSongPath = (path: string) => {
-    setSongPath(path);
-    console.log(songPath);
-  }
-
   return (
-    <MenuContext.Provider value={{ menuPath, navigateToMenu, goBack, songPath, updateSongPath }}>
+    <MenuContext.Provider value={{ menuPath, navigateToMenu, goBack, songPath, setSongPath }}>
       {children}
     </MenuContext.Provider>
   );
