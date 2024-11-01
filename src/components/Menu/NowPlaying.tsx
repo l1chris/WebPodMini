@@ -1,6 +1,7 @@
 import { useImperativeHandle, useEffect, useState, forwardRef } from 'react';
 import { useAudio } from '../../contexts/AudioContext';
 import { useMenu } from '../../contexts/MenuContext';
+import '../../styles/components/NowPlaying.css'
 import ProgressBar from './NowPlaying/ProgressBar';
 
 export type MenuHandle = {
@@ -62,6 +63,7 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
   return (
     <div className='menu'>
       <div className='title'>
+        <span className={`icon ${isPlaying ? "play" : "pause"}`}></span>
         Now Playing
       </div>
       
