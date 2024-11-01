@@ -1,0 +1,15 @@
+.volume-bar {
+  width: 90%;
+  height: 10px;
+  border: 1px solid;
+  border-color: #212121;
+  border-radius: 3px;
+  margin-top: 2px;
+  margin-right: 4px;
+}
+
+.volume-fill {
+  height: 100%;            
+  background-color: #212121; 
+  transition: width 0.1s ease; 
+}

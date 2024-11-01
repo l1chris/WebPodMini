@@ -77,7 +77,7 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
             const timeSinceLastEvent = now - lastEventTime.current;
             
             // If the last event was recent and in the same direction, emit the event
-            if (timeSinceLastEvent < 200) {
+            if (timeSinceLastEvent > 100) {
               onScroll(newDirection);
             }
           }

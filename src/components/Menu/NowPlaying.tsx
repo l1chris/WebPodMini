@@ -3,6 +3,9 @@ import { useAudio } from '../../contexts/AudioContext';
 import { useMenu } from '../../contexts/MenuContext';
 import '../../styles/components/NowPlaying.css'
 import ProgressBar from './NowPlaying/ProgressBar';
+import VolumeBar from './NowPlaying/VolumeBar';
+import MuteIcon from '../Icon/MuteIcon';
+import SpeakerIcon from '../Icon/SpeakerIcon';
 
 export type MenuHandle = {
   updateIndex: (scrollDirection: string) => void;
@@ -15,10 +18,11 @@ interface NowPlayingProps {
 
 const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
   const { goBack } = useMenu();
-  const { isPlaying, currentTime, duration, play, pause, setAudioSource, changeVolume } = useAudio();
+  const { isPlaying, currentTime, duration, volume, play, pause, setAudioSource, changeVolume } = useAudio();
 
   const [isSongLoaded, setIsSongLoaded] = useState(false);
   const [songName, setSongName] = useState('');
+  const [isChangingVolume, setIsChangingVolume] = useState(false)
 
   useEffect(() => {
     if (props.song) {
@@ -31,7 +35,12 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
   }, [props.song, setAudioSource]);
 
   const updateIndex = (scrollDirection: string) => {
+    setIsChangingVolume(true);
     changeVolume(scrollDirection);
+
+    setTimeout(() => {
+      setIsChangingVolume(false);
+    }, 4000);
   };
 
   const handleSelect = (clickedButtonName: string) => {
@@ -69,11 +78,23 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
       
       <div className="song-info">
         <div className='song-info-title'>{songName}</div>
-        <ProgressBar currentTime={currentTime} duration={duration} />
-        <div className='song-info-time'>
-          <div>{formatTime(currentTime)}</div>
-          <div>{formatTime(duration)}</div>
+
+        {!isChangingVolume ? (
+        <div className="song-progress">
+          <ProgressBar currentTime={currentTime} duration={duration} />
+          <div className="song-info-time">
+            <div>{formatTime(currentTime)}</div>
+            <div>{formatTime(duration)}</div>
+          </div>
         </div>
+      ) : (
+        <div className='volume'>
+          <MuteIcon className='icon' />
+          <VolumeBar volume={volume} />
+          <SpeakerIcon className='icon' />
+        </div>
+      )}
+        
       </div>
     </div>
   );
