@@ -1,4 +1,4 @@
-import { useImperativeHandle, useEffect, useState, forwardRef } from 'react';
+import { useImperativeHandle, useEffect, useState, forwardRef, useRef } from 'react';
 import { useAudio } from '../../contexts/AudioContext';
 import { useMenu } from '../../contexts/MenuContext';
 import '../../styles/components/NowPlaying.css'
@@ -24,6 +24,8 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
   const [songName, setSongName] = useState('');
   const [isChangingVolume, setIsChangingVolume] = useState(false)
 
+  const volumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
     if (props.song) {
       setAudioSource(props.song);
@@ -37,11 +39,18 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
   const updateIndex = (scrollDirection: string) => {
     setIsChangingVolume(true);
     changeVolume(scrollDirection);
-
-    setTimeout(() => {
+  
+    // Clear previous timeout if it exists
+    if (volumeTimeoutRef.current) {
+      clearTimeout(volumeTimeoutRef.current);
+    }
+  
+    // Set new timeout to hide the volume bar after 2 seconds
+    volumeTimeoutRef.current = setTimeout(() => {
       setIsChangingVolume(false);
-    }, 4000);
+    }, 2000);
   };
+  
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'play-button') {

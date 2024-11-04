@@ -26,33 +26,21 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [duration, setDuration] = useState(0);
   const [audioSrc, setAudioSrc] = useState<string | null>(null);
   const [volume, setVolume] = useState(1); // Initialize volume to 1 (max)
-  const [volumeChangeTimeout, setVolumeChangeTimeout] = useState<NodeJS.Timeout | null>(null);
 
   const changeVolume = (scrollDirection: string) => {
-    // Clear previous timeout if it exists
-    if (volumeChangeTimeout) {
-      clearTimeout(volumeChangeTimeout);
-    }
+    let newVolume = volume;
 
-    // Create a new timeout to change the volume
-    const newVolumeChangeTimeout = setTimeout(() => {
-      let newVolume = volume;
-
-      if (scrollDirection === 'counterclockwise') {
-        if (newVolume > 0) {
-          newVolume = Math.max(0, Math.round((newVolume - 0.1) * 10) / 10);
-        }
-      } else if (scrollDirection === 'clockwise') {
-        if (newVolume < 1) {
-          newVolume = Math.max(0, Math.round((newVolume + 0.1) * 10) / 10);
-        }
+    if (scrollDirection === 'counterclockwise') {
+      if (newVolume > 0) {
+        newVolume = Math.max(0, Math.round((newVolume - 0.1) * 10) / 10);
       }
-      setVolume(newVolume);
-      audioRef.current.volume = newVolume;
-    }, 100);
-
-    // Set new timeout
-    setVolumeChangeTimeout(newVolumeChangeTimeout);
+    } else if (scrollDirection === 'clockwise') {
+      if (newVolume < 1) {
+        newVolume = Math.max(0, Math.round((newVolume + 0.1) * 10) / 10);
+      }
+    }
+    setVolume(newVolume);
+    audioRef.current.volume = newVolume;
   };
   
   const play = () => {
