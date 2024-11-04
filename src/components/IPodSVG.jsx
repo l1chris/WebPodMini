@@ -22,7 +22,7 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
    }, [onDimensionsChange]);
 
    const handleClick = (event) => {
-      onBtnClick(event.target.id);
+      event.target.id == 'left-button-overlay' ? onBtnClick('left-button') : onBtnClick(event.target.id);
    };
 
    const [isDragging, setIsDragging] = useState(false);
