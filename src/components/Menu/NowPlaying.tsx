@@ -18,7 +18,7 @@ interface NowPlayingProps {
 
 const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
   const { goBack } = useMenu();
-  const { isPlaying, currentTime, duration, volume, play, pause, setAudioSource, changeVolume, playNextSong } = useAudio();
+  const { isPlaying, currentTime, duration, volume, play, pause, setAudioSource, changeVolume, restartSong, playNextSong } = useAudio();
 
   const [isSongLoaded, setIsSongLoaded] = useState(false);
   const [songName, setSongName] = useState('');
@@ -66,8 +66,10 @@ const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
       goBack()
     } else if (clickedButtonName === 'right-button') {
       if (props.song) {
-        playNextSong(props.song)
+        playNextSong(props.song);
       }
+    } else if (clickedButtonName === 'left-button') {
+      restartSong();
     }
   };
 

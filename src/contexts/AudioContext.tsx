@@ -11,6 +11,7 @@ type AudioContextType = {
   pause: () => void;
   setAudioSource: (src: string) => void;
   changeVolume: (scrollDirection: string) => void;
+  restartSong: () => void;
   playNextSong: (currentSongPath: string) => void;
 };
 
@@ -57,6 +58,10 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setAudioSrc(src);
   };
 
+  const restartSong = () => {
+    audioRef.current.currentTime = 0;
+  }
+
   const playNextSong = (currentSongPath: string) => {
     const songs = Object.values(SongOption) as string[]; 
     const currentIndex = songs.indexOf(currentSongPath);
@@ -92,7 +97,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [audioSrc]);
 
   return (
-    <AudioContext.Provider value={{ isPlaying, currentTime, duration, volume, play, pause, setAudioSource, changeVolume, playNextSong }}>
+    <AudioContext.Provider value={{ isPlaying, currentTime, duration, volume, play, pause, setAudioSource, changeVolume, restartSong, playNextSong }}>
       {children}
     </AudioContext.Provider>
   );
