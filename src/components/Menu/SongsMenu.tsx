@@ -39,14 +39,15 @@ const SongsMenu = forwardRef<MenuHandle>((props, ref) => {
       </div>
       
       <div className="menu-items">
-        <div className={`menu-item ${selectedIndex === 0 ? 'selected' : ''}`}>
-          {getSongNameFromFilePath(SongOption.Song1)}
-          <span className="chevron right"></span>
-        </div>
-        <div className={`menu-item ${selectedIndex === 1 ? 'selected' : ''}`}>
-          {getSongNameFromFilePath(SongOption.Song2)}
-          <span className="chevron right"></span>
-        </div>
+        {Object.keys(SongOption).map((songKey, index) => (
+          <div
+            key={index}
+            className={`menu-item ${selectedIndex === index ? 'selected' : ''}`}
+          >
+            {getSongNameFromFilePath(SongOption[songKey as keyof typeof SongOption])}
+            <span className="chevron right"></span>
+          </div>
+        ))}
       </div>
     </div>
   );
