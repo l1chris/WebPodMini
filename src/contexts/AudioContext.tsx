@@ -26,7 +26,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [audioSrc, setAudioSrc] = useState<string | null>(null);
-  const [volume, setVolume] = useState(0.5); // Initialize volume to 1 (max)
+  const [volume, setVolume] = useState(0.2); // Initial volume (1 is max)
 
   const changeVolume = (scrollDirection: string) => {
     let newVolume = volume;
@@ -74,6 +74,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   // Update currentTime and duration
   useEffect(() => {
     const audio = audioRef.current;
+    audio.volume = volume;
 
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
     const handleLoadedMetadata = () => setDuration(audio.duration);
@@ -85,7 +86,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       audio.removeEventListener('timeupdate', handleTimeUpdate);
       audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
     };
-  }, []);
+  }, [volume]);
 
   // Update audio source when audioSrc changes
   useEffect(() => {
