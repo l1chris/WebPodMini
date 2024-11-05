@@ -26,7 +26,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [audioSrc, setAudioSrc] = useState<string | null>(null);
-  const [volume, setVolume] = useState(1); // Initialize volume to 1 (max)
+  const [volume, setVolume] = useState(0.5); // Initialize volume to 1 (max)
 
   const changeVolume = (scrollDirection: string) => {
     let newVolume = volume;

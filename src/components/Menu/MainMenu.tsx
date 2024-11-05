@@ -1,4 +1,6 @@
 import { useImperativeHandle, forwardRef } from 'react';
+import { SongOption } from '../../constants/songOptions';
+import { useAudio } from '../../contexts/AudioContext';
 import { useMenu } from '../../contexts/MenuContext';
 import { useUpdateIndex } from '../../hooks/useUpdateIndex';
 
@@ -16,13 +18,34 @@ export type MenuHandle = {
 
 const MainMenu = forwardRef<MenuHandle>((props, ref) => {
   const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(MainMenuOption).length - 1);
-  const { navigateToMenu, goBack } = useMenu();
+  const { restartSong } = useAudio();
+  const { navigateToMenu, goBack, setSongPath } = useMenu();
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'center-button') {
-      // TODO: Go to currently selected menu
-      // const selectedMenu = Object.values(MainMenuOption)[selectedIndex] as MainMenuOption;
-      navigateToMenu(MainMenuOption.Music);
+
+      if (selectedIndex === 0) {
+        navigateToMenu(MainMenuOption.Music);
+      }
+
+      if (selectedIndex === 1) {
+        navigateToMenu(MainMenuOption.Extras);
+      }
+
+      if (selectedIndex === 2) {
+        navigateToMenu(MainMenuOption.Music);
+      }
+
+      // If Shuffle Songs was selected, first set a random song
+      if (selectedIndex === 3) {
+        const randomIndex = Math.floor(Math.random() * 2); // random number between 0 and 1
+        const selectedSong = Object.values(SongOption)[randomIndex] as SongOption;
+        setSongPath(selectedSong)
+        restartSong();
+        navigateToMenu(MainMenuOption.ShuffleSongs);
+      }
+      
+      
     } else if (clickedButtonName === 'menu-button') {
       goBack()
     }
