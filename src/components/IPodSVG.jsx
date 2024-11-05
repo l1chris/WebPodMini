@@ -3,8 +3,17 @@ import React, { useRef, useEffect, useState } from 'react';
 
 const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
    const rectRef = useRef();
+   const clickWheelRef = useRef(); 
    const lastEventTime = useRef(0); 
+
    const [rectDimensions, setRectDimensions] = useState({ width: 0, height: 0, x: 0, y: 0 });
+   const [isDragging, setIsDragging] = useState(false);
+   const [lastAngle, setLastAngle] = useState(null);
+   const [direction, setDirection] = useState(null);
+   const [centerX, setCenterX] = useState(0); 
+   const [centerY, setCenterY] = useState(0); 
+   
+   const angleThreshold = 30;
 
    useEffect(() => {
       if (rectRef.current) {
@@ -24,15 +33,6 @@ const IPodSVG = ({className, onBtnClick, onDimensionsChange, onScroll}) => {
    const handleClick = (event) => {
       event.target.id == 'left-button-overlay' ? onBtnClick('left-button') : onBtnClick(event.target.id);
    };
-
-   const [isDragging, setIsDragging] = useState(false);
-   const [lastAngle, setLastAngle] = useState(null);
-   const [direction, setDirection] = useState(null);
-
-   const clickWheelRef = useRef(); 
-   const [centerX, setCenterX] = useState(0); 
-   const [centerY, setCenterY] = useState(0); 
-   const angleThreshold = 30;
    
    useEffect(() => {
       if (clickWheelRef.current) {
