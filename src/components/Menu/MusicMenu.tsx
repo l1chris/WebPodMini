@@ -3,7 +3,6 @@ import { useMenu } from '../../contexts/MenuContext';
 import { useUpdateIndex } from '../../hooks/useUpdateIndex';
 
 enum MusicOption {
-  Playlists = 'playlists',
   Artists = 'artists',
   Albums = 'albums',
   Songs = 'songs'
@@ -41,18 +40,14 @@ const MusicMenu = forwardRef<MenuHandle>((props, ref) => {
       
       <div className="menu-items">
         <div className={`menu-item ${selectedIndex === 0 ? 'selected' : ''}`}>
-          Playlists
-          <span className="chevron right"></span>
-        </div>
-        <div className={`menu-item ${selectedIndex === 1 ? 'selected' : ''}`}>
           Artists
           <span className="chevron right"></span>
         </div>
-        <div className={`menu-item ${selectedIndex === 2 ? 'selected' : ''}`}>
+        <div className={`menu-item ${selectedIndex === 1 ? 'selected' : ''}`}>
           Albums
           <span className="chevron right"></span>
         </div>
-        <div className={`menu-item ${selectedIndex === 3 ? 'selected' : ''}`}>
+        <div className={`menu-item ${selectedIndex === 2 ? 'selected' : ''}`}>
           Songs
           <span className="chevron right"></span>
         </div>
