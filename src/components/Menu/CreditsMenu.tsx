@@ -1,5 +1,5 @@
 import { useImperativeHandle, forwardRef, useRef } from 'react'
-import { useMenu } from '../../contexts/MenuContext'
+import { useMenu } from '../../hooks/useMenu'
 
 export type MenuHandle = {
   updateIndex: (scrollDirection: string) => void

@@ -6,7 +6,7 @@ import {
   useRef,
 } from 'react'
 import { useAudio } from '../../contexts/AudioContext'
-import { useMenu } from '../../contexts/MenuContext'
+import { useMenu } from '../../hooks/useMenu'
 import '../../styles/components/NowPlaying.css'
 import ProgressBar from './NowPlaying/ProgressBar'
 import VolumeBar from './NowPlaying/VolumeBar'

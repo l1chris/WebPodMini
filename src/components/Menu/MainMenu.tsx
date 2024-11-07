@@ -1,7 +1,7 @@
 import { useImperativeHandle, forwardRef } from 'react'
 import { SongOption, NumberOfSongs } from '../../constants/songOptions'
 import { useAudio } from '../../contexts/AudioContext'
-import { useMenu } from '../../contexts/MenuContext'
+import { useMenu } from '../../hooks/useMenu'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
 
 enum MainMenuOption {

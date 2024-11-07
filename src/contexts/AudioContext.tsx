@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 import { SongOption } from '../constants/songOptions'
-import { useMenu } from '../contexts/MenuContext'
+import { useMenu } from '../hooks/useMenu'
 
 type AudioContextType = {
   isPlaying: boolean

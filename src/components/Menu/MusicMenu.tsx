@@ -1,5 +1,5 @@
 import { useImperativeHandle, forwardRef } from 'react'
-import { useMenu } from '../../contexts/MenuContext'
+import { useMenu } from '../../hooks/useMenu'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
 
 enum MusicOption {
