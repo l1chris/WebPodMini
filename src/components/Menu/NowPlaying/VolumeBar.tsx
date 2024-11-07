@@ -14,10 +14,7 @@ const VolumeBar: React.FC<VolumeBarProps> = ({ volume }) => {
 
   return (
     <div className="volume-bar">
-      <div
-        className="volume-fill"
-        style={{ width: `${currentVolume * 100}%` }}
-      ></div>
+      <div className="volume-fill" style={{ width: `${currentVolume * 100}%` }}></div>
     </div>
   )
 }

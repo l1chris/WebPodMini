@@ -76,8 +76,7 @@ const IPodSVG = ({ className, onBtnClick, onDimensionsChange, onScroll }) => {
 
       // Only proceed if angle change exceeds threshold
       if (Math.abs(angleDifference) > angleThreshold) {
-        const newDirection =
-          angleDifference > 0 ? 'clockwise' : 'counterclockwise'
+        const newDirection = angleDifference > 0 ? 'clockwise' : 'counterclockwise'
 
         // Check if the direction is the same as the last detected direction
         if (direction === newDirection) {
@@ -393,22 +392,14 @@ const IPodSVG = ({ className, onBtnClick, onDimensionsChange, onScroll }) => {
             y2={529.38354}
             gradientTransform="matrix(1,0,0,0.69826639,0,160.32136)"
           />
-          <filter
-            inkscape:collect="always"
-            id="filter4092"
-            colorInterpolationFilters="sRGB"
-          >
+          <filter inkscape:collect="always" id="filter4092" colorInterpolationFilters="sRGB">
             <feGaussianBlur
               inkscape:collect="always"
               stdDeviation={8.3648126}
               id="feGaussianBlur4094"
             />
           </filter>
-          <filter
-            inkscape:collect="always"
-            id="filter4100"
-            colorInterpolationFilters="sRGB"
-          >
+          <filter inkscape:collect="always" id="filter4100" colorInterpolationFilters="sRGB">
             <feGaussianBlur
               inkscape:collect="always"
               stdDeviation={8.3623883}

@@ -28,9 +28,7 @@ export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
   }
 
   return (
-    <MenuContext.Provider
-      value={{ menuPath, navigateToMenu, goBack, songPath, setSongPath }}
-    >
+    <MenuContext.Provider value={{ menuPath, navigateToMenu, goBack, songPath, setSongPath }}>
       {children}
     </MenuContext.Provider>
   )

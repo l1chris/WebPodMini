@@ -1,10 +1,4 @@
-import {
-  useImperativeHandle,
-  useEffect,
-  useState,
-  forwardRef,
-  useRef,
-} from 'react'
+import { useImperativeHandle, useEffect, useState, forwardRef, useRef } from 'react'
 import { useAudio } from '../../hooks/useAudio.js'
 import { useMenu } from '../../hooks/useMenu'
 import '../../styles/components/NowPlaying.css'

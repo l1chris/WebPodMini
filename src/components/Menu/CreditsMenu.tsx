@@ -40,9 +40,7 @@ const CreditsMenu = forwardRef<MenuHandle>((props, ref) => {
         <span>Image Credit:</span>
         <br />
         <br />
-        <span>
-          Original SVG file by House, CC BY-SA 3.0 via Wikimedia Commons.
-        </span>
+        <span>Original SVG file by House, CC BY-SA 3.0 via Wikimedia Commons.</span>
         <br />
         <br />
         <span>Music Credit:</span>

@@ -3,9 +3,7 @@ import { SongOption } from '../constants/songOptions'
 import { AudioContext } from '../contexts/AudioContext'
 import { useMenu } from '../hooks/useMenu'
 
-export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { setSongPath } = useMenu()
 
   const audioRef = useRef<HTMLAudioElement>(new Audio())

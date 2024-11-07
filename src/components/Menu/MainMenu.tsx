@@ -16,9 +16,7 @@ export type MenuHandle = {
 }
 
 const MainMenu = forwardRef<MenuHandle>((props, ref) => {
-  const { selectedIndex, updateIndex } = useUpdateIndex(
-    Object.keys(MainMenuOption).length - 1,
-  )
+  const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(MainMenuOption).length - 1)
   const { restartSong } = useAudio()
   const { navigateToMenu, goBack, setSongPath } = useMenu()
 
@@ -35,9 +33,7 @@ const MainMenu = forwardRef<MenuHandle>((props, ref) => {
         }
         case 2: {
           const randomIndex = Math.floor(Math.random() * NumberOfSongs)
-          const selectedSong = Object.values(SongOption)[
-            randomIndex
-          ] as SongOption
+          const selectedSong = Object.values(SongOption)[randomIndex] as SongOption
           setSongPath(selectedSong)
           restartSong()
           navigateToMenu(MainMenuOption.ShuffleSongs)

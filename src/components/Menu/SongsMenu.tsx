@@ -9,16 +9,12 @@ export type MenuHandle = {
 }
 
 const SongsMenu = forwardRef<MenuHandle>((props, ref) => {
-  const { selectedIndex, updateIndex } = useUpdateIndex(
-    Object.keys(SongOption).length - 1,
-  )
+  const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(SongOption).length - 1)
   const { navigateToMenu, goBack, setSongPath } = useMenu()
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'center-button') {
-      const selectedSong = Object.values(SongOption)[
-        selectedIndex
-      ] as SongOption
+      const selectedSong = Object.values(SongOption)[selectedIndex] as SongOption
       setSongPath(selectedSong)
 
       navigateToMenu('nowPlaying')
@@ -42,13 +38,8 @@ const SongsMenu = forwardRef<MenuHandle>((props, ref) => {
 
       <div className="menu-items">
         {Object.keys(SongOption).map((songKey, index) => (
-          <div
-            key={index}
-            className={`menu-item ${selectedIndex === index ? 'selected' : ''}`}
-          >
-            {getSongNameFromFilePath(
-              SongOption[songKey as keyof typeof SongOption],
-            )}
+          <div key={index} className={`menu-item ${selectedIndex === index ? 'selected' : ''}`}>
+            {getSongNameFromFilePath(SongOption[songKey as keyof typeof SongOption])}
             <span className="chevron right"></span>
           </div>
         ))}

@@ -13,6 +13,4 @@ export type AudioContextType = {
   playNextSong: (currentSongPath: string) => void
 }
 
-export const AudioContext = createContext<AudioContextType | undefined>(
-  undefined,
-)
+export const AudioContext = createContext<AudioContextType | undefined>(undefined)

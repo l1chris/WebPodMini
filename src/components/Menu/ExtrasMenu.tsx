@@ -9,9 +9,7 @@ export type MenuHandle = {
 }
 
 const ExtrasMenu = forwardRef<MenuHandle>((props, ref) => {
-  const { selectedIndex, updateIndex } = useUpdateIndex(
-    Object.keys(SongOption).length - 1,
-  )
+  const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(SongOption).length - 1)
   const { navigateToMenu, goBack } = useMenu()
 
   const handleSelect = (clickedButtonName: string) => {
