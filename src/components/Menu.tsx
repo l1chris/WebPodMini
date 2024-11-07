@@ -8,6 +8,8 @@ import SongsMenu from './Menu/SongsMenu'
 import NowPlaying from './Menu/NowPlaying'
 import { useMenu } from '../hooks/useMenu'
 import { AudioProvider } from '../providers/AudioProvider'
+import ArtistsMenu from './Menu/ArtistsMenu'
+import AlbumsMenu from './Menu/AlbumsMenu'
 
 enum MenuOption {
   Home = 'home',
@@ -17,6 +19,7 @@ enum MenuOption {
   Music = 'music',
   Extras = 'extras',
   Credits = 'credits',
+  Artists = 'artists',
 }
 
 interface MenuProps {
@@ -65,6 +68,10 @@ const Menu = forwardRef<MenuHandle, MenuProps>((props, ref) => {
         return <ExtrasMenu ref={menuRef} />
       case MenuOption.Credits:
         return <CreditsMenu ref={menuRef} />
+      case MenuOption.Artists:
+        return <ArtistsMenu ref={menuRef} />
+      case MenuOption.Albums:
+        return <AlbumsMenu ref={menuRef} />
       default:
         return <MainMenu ref={menuRef} />
     }

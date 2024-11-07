@@ -19,9 +19,22 @@ const MusicMenu = forwardRef<MenuHandle>((props, ref) => {
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'center-button') {
-      // TODO: Go to currently selected menu
-      // const selectedMenu = Object.values(MusicOption)[selectedIndex] as MusicOption;
-      navigateToMenu('songs')
+      switch (selectedIndex) {
+        case 0: {
+          navigateToMenu(MusicOption.Artists)
+          break
+        }
+        case 1: {
+          navigateToMenu(MusicOption.Albums)
+          break
+        }
+        case 2: {
+          navigateToMenu(MusicOption.Songs)
+          break
+        }
+        default:
+          break
+      }
     } else if (clickedButtonName === 'menu-button') {
       goBack()
     }
