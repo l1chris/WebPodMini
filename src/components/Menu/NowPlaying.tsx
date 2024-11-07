@@ -5,7 +5,7 @@ import {
   forwardRef,
   useRef,
 } from 'react'
-import { useAudio } from '../../contexts/AudioContext'
+import { useAudio } from '../../hooks/useAudio.js'
 import { useMenu } from '../../hooks/useMenu'
 import '../../styles/components/NowPlaying.css'
 import ProgressBar from './NowPlaying/ProgressBar'

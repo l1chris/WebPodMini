@@ -7,7 +7,8 @@ type MenuProviderProps = {
 
 export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
   const [menuPath, setMenuPath] = useState<string[]>(['home'])
-  const [_, setMenuHistory] = useState<string[][]>([])
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [menuHistory, setMenuHistory] = useState<string[][]>([])
   const [songPath, setSongPath] = useState<string>('')
 
   const navigateToMenu = (menu: string) => {

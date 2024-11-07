@@ -7,7 +7,7 @@ import MusicMenu from './Menu/MusicMenu'
 import SongsMenu from './Menu/SongsMenu'
 import NowPlaying from './Menu/NowPlaying'
 import { useMenu } from '../hooks/useMenu'
-import { AudioProvider } from '../contexts/AudioContext'
+import { AudioProvider } from '../providers/AudioProvider'
 
 enum MenuOption {
   Home = 'home',
