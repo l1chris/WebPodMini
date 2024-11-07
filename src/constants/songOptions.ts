@@ -3,7 +3,7 @@ export enum SongOption {
   Song2 = '/music/Arsanis.mp3',
   Song3 = '/music/Felucia.mp3',
   Song4 = '/music/Nelyth.mp3',
-  Song5 = '/music/Treya.mp3'
+  Song5 = '/music/Treya.mp3',
 }
 
-export const NumberOfSongs = Object.keys(SongOption).length / 2;
+export const NumberOfSongs = Object.keys(SongOption).length / 2

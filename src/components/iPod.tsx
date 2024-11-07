@@ -1,32 +1,42 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react'
 import '../styles/iPod.css'
-import { MenuProvider } from '../contexts/MenuContext.js';
+import { MenuProvider } from '../contexts/MenuContext.js'
 import Menu from './Menu.js'
 
-import IPodSVG from './IPodSVG.jsx';
+import IPodSVG from './IPodSVG.jsx'
 
 const IPod: React.FC = () => {
-  const [rectDimensions, setRectDimensions] = useState({ width: 0, height: 0, x: 0, y: 0 });
+  const [rectDimensions, setRectDimensions] = useState({
+    width: 0,
+    height: 0,
+    x: 0,
+    y: 0,
+  })
 
-  const menuRef = useRef();
+  const menuRef = useRef()
 
   const handleBtnClick = (event) => {
     if (menuRef.current) {
-      menuRef.current.updateMenu(event);
+      menuRef.current.updateMenu(event)
     }
-  };
+  }
 
   const handleScroll = (event) => {
     console.log(event)
     if (menuRef.current) {
-      menuRef.current.updateIndex(event);
+      menuRef.current.updateIndex(event)
     }
-  };
+  }
 
   return (
     <div className="ipod-svg-container">
-      <IPodSVG className="ipod-svg" onBtnClick={handleBtnClick} onDimensionsChange={setRectDimensions} onScroll={handleScroll}/>
-      
+      <IPodSVG
+        className="ipod-svg"
+        onBtnClick={handleBtnClick}
+        onDimensionsChange={setRectDimensions}
+        onScroll={handleScroll}
+      />
+
       <div
         style={{
           position: 'relative',
@@ -41,7 +51,7 @@ const IPod: React.FC = () => {
         </MenuProvider>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default IPod;
+export default IPod

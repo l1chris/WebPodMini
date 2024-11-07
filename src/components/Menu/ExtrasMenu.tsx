@@ -1,36 +1,36 @@
-import { useImperativeHandle, forwardRef } from 'react';
-import { useMenu } from '../../contexts/MenuContext';
-import { useUpdateIndex } from '../../hooks/useUpdateIndex';
-import { SongOption } from '../../constants/songOptions';
+import { useImperativeHandle, forwardRef } from 'react'
+import { useMenu } from '../../contexts/MenuContext'
+import { useUpdateIndex } from '../../hooks/useUpdateIndex'
+import { SongOption } from '../../constants/songOptions'
 
 export type MenuHandle = {
-  updateIndex: (scrollDirection: string) => void;
-  handleSelect: (clickedButtonName: string) => void;
-};
+  updateIndex: (scrollDirection: string) => void
+  handleSelect: (clickedButtonName: string) => void
+}
 
 const ExtrasMenu = forwardRef<MenuHandle>((props, ref) => {
-  const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(SongOption).length - 1);
-  const { navigateToMenu, goBack } = useMenu();
+  const { selectedIndex, updateIndex } = useUpdateIndex(
+    Object.keys(SongOption).length - 1,
+  )
+  const { navigateToMenu, goBack } = useMenu()
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'center-button') {
-      navigateToMenu('credits');
+      navigateToMenu('credits')
     } else if (clickedButtonName === 'menu-button') {
       goBack()
     }
-  };
+  }
 
   useImperativeHandle(ref, () => ({
     updateIndex,
-    handleSelect
-  }));
+    handleSelect,
+  }))
 
   return (
-    <div className='menu'>
-      <div className='title'>
-        Extras
-      </div>
-      
+    <div className="menu">
+      <div className="title">Extras</div>
+
       <div className="menu-items">
         <div className={`menu-item ${selectedIndex === 0 ? 'selected' : ''}`}>
           Credits
@@ -38,7 +38,7 @@ const ExtrasMenu = forwardRef<MenuHandle>((props, ref) => {
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
-export default ExtrasMenu;
+export default ExtrasMenu

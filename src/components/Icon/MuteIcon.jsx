@@ -1,5 +1,4 @@
-import * as React from "react";
-
+import * as React from 'react'
 
 const MuteIcon = () => (
   <svg
@@ -11,13 +10,12 @@ const MuteIcon = () => (
     <path
       d="M39.389,13.769 L22.235,28.606 L6,28.606 L6,47.699 L21.989,47.699 L39.389,62.75 L39.389,13.769z"
       style={{
-        stroke: "#111",
+        stroke: '#111',
         strokeWidth: 5,
-        strokeLinejoin: "round",
-        fill: "#111",
+        strokeLinejoin: 'round',
+        fill: '#111',
       }}
     />
   </svg>
-);
-export default MuteIcon;
-
+)
+export default MuteIcon

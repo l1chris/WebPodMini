@@ -8,7 +8,7 @@
   height: 10px;
   display: flex;
   justify-content: center;
-  border-bottom:1px solid;
+  border-bottom: 1px solid;
   border-bottom-color: black;
   padding-top: 2px;
   padding-bottom: 2px;
@@ -24,7 +24,7 @@
 }
 
 .menu-item.selected {
-  color: #eeeeee ;
+  color: #eeeeee;
   background-color: #212121;
 }
 
@@ -52,20 +52,20 @@
 }
 
 .chevron::before {
-	border-style: solid;
-	border-width: 0.25em 0.25em 0 0;
-	content: '';
-	display: inline-block;
-	height: 0.45em;
-	left: 0.15em;
-	position: relative;
-	top: 0.15em;
-	transform: rotate(-45deg);
-	vertical-align: top;
-	width: 0.45em;
+  border-style: solid;
+  border-width: 0.25em 0.25em 0 0;
+  content: '';
+  display: inline-block;
+  height: 0.45em;
+  left: 0.15em;
+  position: relative;
+  top: 0.15em;
+  transform: rotate(-45deg);
+  vertical-align: top;
+  width: 0.45em;
 }
 
 .chevron.right:before {
-	left: 0;
-	transform: rotate(45deg);
+  left: 0;
+  transform: rotate(45deg);
 }

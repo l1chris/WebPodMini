@@ -9,7 +9,7 @@
 }
 
 .progress-fill {
-  height: 100%;            
-  background-color: #212121; 
-  transition: width 0.1s ease; 
+  height: 100%;
+  background-color: #212121;
+  transition: width 0.1s ease;
 }
