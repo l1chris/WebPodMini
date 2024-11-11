@@ -1,5 +1,5 @@
 import { useImperativeHandle, forwardRef, useRef } from 'react'
-import '../styles/Menu.css'
+import '../styles/Menu.scss'
 import CreditsMenu from './Menu/CreditsMenu'
 import ExtrasMenu from './Menu/ExtrasMenu'
 import MainMenu from './Menu/MainMenu'

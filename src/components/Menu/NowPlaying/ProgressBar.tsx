@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../styles/components/NowPlaying/ProgressBar.css'
+import '../../../styles/components/NowPlaying/ProgressBar.scss'
 
 interface ProgressBarProps {
   currentTime: number

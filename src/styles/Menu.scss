@@ -1,0 +1,74 @@
+$primary-color: #222;
+$background-color: #ddd;
+$selected-bg-color: #212121;
+$selected-text-color: #eeeeee;
+$scrollbar-thumb-color: #2b2a29;
+
+.menu {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid $primary-color;
+  padding: 2px 0;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 5px 4px 3px;
+
+  &.selected {
+    color: $selected-text-color;
+    background-color: $selected-bg-color;
+  }
+}
+
+.menu-items {
+  &.scrollable {
+    max-height: 77px;
+    overflow-y: auto;
+    padding-right: 10px;
+    pointer-events: none;
+
+    // Scrollbar styling for Webkit browsers (Chrome, Safari)
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $scrollbar-thumb-color;
+    }
+
+    // Scrollbar styling for Firefox
+    scrollbar-width: thin; // Slim scrollbar
+    scrollbar-color: $scrollbar-thumb-color transparent; // Black thumb with transparent background
+  }
+}
+
+.chevron {
+  &::before {
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    content: '';
+    display: inline-block;
+    height: 0.45em;
+    left: 0.15em;
+    position: relative;
+    top: 0.15em;
+    transform: rotate(-45deg);
+    vertical-align: top;
+    width: 0.45em;
+  }
+
+  &.right::before {
+    left: 0;
+    transform: rotate(45deg);
+  }
+}

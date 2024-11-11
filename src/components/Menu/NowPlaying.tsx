@@ -1,7 +1,7 @@
 import { useImperativeHandle, useEffect, useState, forwardRef, useRef } from 'react'
 import { useAudio } from '../../hooks/useAudio.js'
 import { useMenu } from '../../hooks/useMenu'
-import '../../styles/components/NowPlaying.css'
+import '../../styles/components/NowPlaying.scss'
 import ProgressBar from './NowPlaying/ProgressBar'
 import VolumeBar from './NowPlaying/VolumeBar'
 import MuteIcon from '../Icon/MuteIcon.jsx'

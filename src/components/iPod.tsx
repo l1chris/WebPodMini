@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import '../styles/iPod.css'
+import '../styles/iPod.scss'
 import { MenuProvider } from '../providers/MenuProvider.js'
 import Menu from './Menu.js'
 

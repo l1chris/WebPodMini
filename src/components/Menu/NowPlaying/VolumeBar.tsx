@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../../../styles/components/NowPlaying/VolumeBar.css'
+import '../../../styles/components/NowPlaying/VolumeBar.scss'
 
 type VolumeBarProps = {
   volume: number
