@@ -61,38 +61,62 @@ const IPodSVG = ({ className, onBtnClick, onDimensionsChange, onScroll }) => {
     setLastAngle(initialAngle)
   }
 
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 1) { // Ensure single finger touch
+      setIsDragging(true);
+      const touch = e.touches[0];
+      const initialAngle = calculateAngle(touch.clientX, touch.clientY);
+      setLastAngle(initialAngle);
+    }
+  };
+
   const handleMouseMove = (e) => {
     if (!isDragging) return
 
     const currentAngle = calculateAngle(e.clientX, e.clientY)
-    const now = Date.now()
 
     if (lastAngle !== null) {
-      let angleDifference = currentAngle - lastAngle
+      handleScrollDirectionChange(currentAngle)
+    }
+  }
 
-      // Adjust for crossing 180-degree boundary
-      if (angleDifference > 180) angleDifference -= 360
-      if (angleDifference < -180) angleDifference += 360
+  const handleTouchMove = (e) => {
+    if (!isDragging || e.touches.length !== 1) return;
+  
+    const touch = e.touches[0];
+    const currentAngle = calculateAngle(touch.clientX, touch.clientY);
 
-      // Only proceed if angle change exceeds threshold
-      if (Math.abs(angleDifference) > angleThreshold) {
-        const newDirection = angleDifference > 0 ? 'clockwise' : 'counterclockwise'
+    if (lastAngle !== null) {
+      handleScrollDirectionChange(currentAngle)
+    }
+  };
 
-        // Check if the direction is the same as the last detected direction
-        if (direction === newDirection) {
-          const timeSinceLastEvent = now - lastEventTime.current
+  const handleScrollDirectionChange = (currentAngle) => {
+    const now = Date.now()
+    let angleDifference = currentAngle - lastAngle
 
-          // If the last event was recent and in the same direction, emit the event
-          if (timeSinceLastEvent > 100) {
-            onScroll(newDirection)
-          }
+    // Adjust for crossing 180-degree boundary
+    if (angleDifference > 180) angleDifference -= 360
+    if (angleDifference < -180) angleDifference += 360
+
+    // Only proceed if angle change exceeds threshold
+    if (Math.abs(angleDifference) > angleThreshold) {
+      const newDirection = angleDifference > 0 ? 'clockwise' : 'counterclockwise'
+
+      // Check if the direction is the same as the last detected direction
+      if (direction === newDirection) {
+        const timeSinceLastEvent = now - lastEventTime.current
+
+        // If the last event was recent and in the same direction, emit the event
+        if (timeSinceLastEvent > 100) {
+          onScroll(newDirection)
         }
-
-        // Update state with the latest information
-        setDirection(newDirection)
-        setLastAngle(currentAngle)
-        lastEventTime.current = now
       }
+
+      // Update state with the latest information
+      setDirection(newDirection)
+      setLastAngle(currentAngle)
+      lastEventTime.current = now
     }
   }
 
@@ -635,15 +659,18 @@ const IPodSVG = ({ className, onBtnClick, onDimensionsChange, onScroll }) => {
             rx={60.68668}
           />
 
-          <g id="g4197" onMouseLeave={handleMouseLeave}>
+          <g id="g4197" onMouseLeave={handleMouseLeave} onTouchCancel={handleMouseLeave}>
             {/*
             Click Wheel
          */}
             <path
               ref={clickWheelRef}
               onMouseDown={handleMouseDown}
+              onTouchStart={handleTouchStart}
               onMouseUp={handleMouseUp}
+              onTouchEnd={handleMouseUp}
               onMouseMove={handleMouseMove}
+              onTouchMove={handleTouchMove}
               inkscape:connector-curvature={0}
               id="clickwheel-button"
               style={{
