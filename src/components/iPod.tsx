@@ -22,7 +22,6 @@ const IPod: React.FC = () => {
   }
 
   const handleScroll = (event) => {
-    console.log(event)
     if (menuRef.current) {
       menuRef.current.updateIndex(event)
     }

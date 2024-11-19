@@ -43,7 +43,6 @@ const Menu = forwardRef<MenuHandle, MenuProps>((props, ref) => {
   }
 
   const updateMenu = (clickedButtonName: string) => {
-    console.log(clickedButtonName)
     if (menuRef.current) {
       menuRef.current.handleSelect(clickedButtonName)
     }
