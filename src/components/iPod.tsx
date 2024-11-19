@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import '../styles/iPod.scss'
-import { MenuProvider } from '../providers/MenuProvider.js'
-import Menu from './Menu.js'
+import { MenuProvider } from '../providers/MenuProvider.tsx'
+import Menu from './Menu.tsx'
 
 import IPodSVG from './IPodSVG.jsx'
 
