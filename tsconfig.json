@@ -1,8 +1,21 @@
 {
-  "files": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "tests"],
+  "references": [],
   "compilerOptions": {
-    "jsx": "react-jsx", // or "react" depending on your React version
-    "strict": true
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "types": ["vite/client"]
   }
 }

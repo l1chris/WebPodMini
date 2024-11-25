@@ -1,8 +1,13 @@
 {
   "name": "ipod-project",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "0.0.1",
+  "main": "dist/ipod.umd.js",
+  "module": "dist/ipod.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -30,6 +35,7 @@
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.10.0",
     "vite": "^5.4.9",
+    "vite-plugin-dts": "^4.3.0",
     "vite-plugin-svgr": "^4.2.0"
   }
 }
