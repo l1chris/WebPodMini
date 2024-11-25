@@ -5,12 +5,17 @@ import svgr from 'vite-plugin-svgr'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-  plugins: [react(), svgr(), dts()],
+  plugins: [
+    react(),
+    svgr(),
+    dts({
+      tsconfigPath: resolve(__dirname, 'tsconfig.lib.json'),
+    }),
+  ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'ipod-project',
-      fileName: 'ipod-project',
+      entry: resolve(__dirname, 'lib/index.ts'),
+      formats: ['es'],
     },
     rollupOptions: {
       external: ['react', 'react-dom'],

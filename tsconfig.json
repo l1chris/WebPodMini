@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "include": ["src", "lib"],
   "exclude": ["node_modules", "dist", "tests"],
   "references": [],
   "compilerOptions": {
@@ -14,7 +14,6 @@
     "declarationMap": true,
     "declarationDir": "./dist",
     "outDir": "./dist",
-    "rootDir": "./src",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "emitDeclarationOnly": true,

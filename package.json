@@ -1,20 +1,15 @@
 {
   "name": "ipod-project",
+  "private": true,
   "type": "module",
   "files": ["dist"],
   "version": "0.0.1",
-  "main": "./dist/ipod-project.umd.js",
+  "main": "./dist/ipod-project.js",
   "module": "./dist/ipod-project.mjs",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/ipod-project.mjs",
-      "require": "./dist/ipod-project.umd.js"
-    }
-  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc --p ./tsconfig.lib.json && vite build",
     "lint": "eslint .",
     "prettier": "prettier --write .",
     "preview": "vite preview"
