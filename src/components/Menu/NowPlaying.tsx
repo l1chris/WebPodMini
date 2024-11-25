@@ -6,17 +6,13 @@ import ProgressBar from './NowPlaying/ProgressBar'
 import VolumeBar from './NowPlaying/VolumeBar'
 import MuteIcon from '../Icon/MuteIcon.jsx'
 import SpeakerIcon from '../Icon/SpeakerIcon.jsx'
-
-export type MenuHandle = {
-  updateIndex: (scrollDirection: string) => void
-  handleSelect: (clickedButtonName: string) => void
-}
+import { SubMenuHandle } from '../../types/menuTypes'
 
 interface NowPlayingProps {
   song: string | undefined
 }
 
-const NowPlaying = forwardRef<MenuHandle, NowPlayingProps>((props, ref) => {
+const NowPlaying = forwardRef<SubMenuHandle, NowPlayingProps>((props, ref) => {
   const { goBack } = useMenu()
   const {
     isPlaying,

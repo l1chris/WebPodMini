@@ -10,6 +10,7 @@ import { useMenu } from '../hooks/useMenu'
 import { AudioProvider } from '../providers/AudioProvider'
 import ArtistsMenu from './Menu/ArtistsMenu'
 import AlbumsMenu from './Menu/AlbumsMenu'
+import { MainMenuHandle, SubMenuHandle } from '../types/menuTypes'
 
 enum MenuOption {
   Home = 'home',
@@ -22,18 +23,9 @@ enum MenuOption {
   Artists = 'artists',
 }
 
-interface MenuProps {
-  scrollDirection: string | undefined
-}
-
-export type MenuHandle = {
-  updateIndex: (scrollDirection: string) => void
-  updateMenu: (clickedButtonName: string) => void
-}
-
-const Menu = forwardRef<MenuHandle, MenuProps>((props, ref) => {
+const Menu = forwardRef<MainMenuHandle>((props, ref) => {
   const { menuPath, songPath } = useMenu()
-  const menuRef = useRef()
+  const menuRef = useRef<SubMenuHandle>(null);
   const currentMenu = menuPath[menuPath.length - 1] as MenuOption
 
   const updateIndex = (scrollDirection: string) => {

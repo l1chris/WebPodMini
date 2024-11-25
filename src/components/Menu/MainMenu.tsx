@@ -3,6 +3,7 @@ import { SongOption, NumberOfSongs } from '../../constants/songOptions'
 import { useAudio } from '../../hooks/useAudio'
 import { useMenu } from '../../hooks/useMenu'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
+import { SubMenuHandle } from '../../types/menuTypes'
 
 enum MainMenuOption {
   Music = 'music',
@@ -10,12 +11,7 @@ enum MainMenuOption {
   ShuffleSongs = 'nowPlaying',
 }
 
-export type MenuHandle = {
-  updateIndex: (scrollDirection: string) => void
-  handleSelect: (clickedButtonName: string) => void
-}
-
-const MainMenu = forwardRef<MenuHandle>((props, ref) => {
+const MainMenu = forwardRef<SubMenuHandle>((props, ref) => {
   const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(MainMenuOption).length - 1)
   const { restartSong } = useAudio()
   const { navigateToMenu, goBack, setSongPath } = useMenu()

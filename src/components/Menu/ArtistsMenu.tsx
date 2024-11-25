@@ -1,17 +1,13 @@
 import { useImperativeHandle, forwardRef } from 'react'
 import { useMenu } from '../../hooks/useMenu'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
+import { SubMenuHandle } from '../../types/menuTypes'
 
 enum ArtistOption {
   ChauSara = 'chau-sara',
 }
 
-export type MenuHandle = {
-  updateIndex: (scrollDirection: string) => void
-  handleSelect: (clickedButtonName: string) => void
-}
-
-const ArtistsMenu = forwardRef<MenuHandle>((props, ref) => {
+const ArtistsMenu = forwardRef<SubMenuHandle>((props, ref) => {
   const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(ArtistOption).length - 1)
   const { navigateToMenu, goBack } = useMenu()
 

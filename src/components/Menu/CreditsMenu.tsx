@@ -1,15 +1,11 @@
 import { useImperativeHandle, forwardRef, useRef } from 'react'
 import { useMenu } from '../../hooks/useMenu'
+import { SubMenuHandle } from '../../types/menuTypes'
 
-export type MenuHandle = {
-  updateIndex: (scrollDirection: string) => void
-  handleSelect: (clickedButtonName: string) => void
-}
-
-const CreditsMenu = forwardRef<MenuHandle>((props, ref) => {
+const CreditsMenu = forwardRef<SubMenuHandle>((props, ref) => {
   const { goBack } = useMenu()
 
-  const scrollableRef = useRef(null)
+  const scrollableRef = useRef<HTMLDivElement>(null)
 
   const updateIndex = (scrollDirection: string) => {
     if (scrollableRef.current) {

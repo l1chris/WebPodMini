@@ -2,13 +2,9 @@ import { useImperativeHandle, forwardRef } from 'react'
 import { useMenu } from '../../hooks/useMenu'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
 import { SongOption } from '../../constants/songOptions'
+import { SubMenuHandle } from '../../types/menuTypes'
 
-export type MenuHandle = {
-  updateIndex: (scrollDirection: string) => void
-  handleSelect: (clickedButtonName: string) => void
-}
-
-const SongsMenu = forwardRef<MenuHandle>((props, ref) => {
+const SongsMenu = forwardRef<SubMenuHandle>((props, ref) => {
   const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(SongOption).length - 1)
   const { navigateToMenu, goBack, setSongPath } = useMenu()
 

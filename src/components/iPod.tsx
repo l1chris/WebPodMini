@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import '../styles/iPod.scss'
 import { MenuProvider } from '../providers/MenuProvider.tsx'
 import Menu from './Menu.tsx'
+import { MainMenuHandle } from '../types/menuTypes'
 
 import IPodSVG from './IPodSVG.jsx'
 
@@ -13,15 +14,15 @@ const IPod: React.FC = () => {
     y: 0,
   })
 
-  const menuRef = useRef()
+  const menuRef = useRef<MainMenuHandle>(null);
 
-  const handleBtnClick = (event) => {
+  const handleBtnClick = (event: any) => {
     if (menuRef.current) {
       menuRef.current.updateMenu(event)
     }
   }
 
-  const handleScroll = (event) => {
+  const handleScroll = (event: any) => {
     if (menuRef.current) {
       menuRef.current.updateIndex(event)
     }

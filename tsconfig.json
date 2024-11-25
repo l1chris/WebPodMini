@@ -16,6 +16,8 @@
     "rootDir": "./src",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "types": ["vite/client"]
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true,
+    "types": ["vite/client", "node"]
   }
 }
