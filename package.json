@@ -1,13 +1,17 @@
 {
   "name": "ipod-project",
-  "private": true,
+  "type": "module",
+  "files": ["dist"],
   "version": "0.0.1",
-  "main": "dist/ipod.umd.js",
-  "module": "dist/ipod.es.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "main": "./dist/ipod-project.umd.js",
+  "module": "./dist/ipod-project.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/ipod-project.mjs",
+      "require": "./dist/ipod-project.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

@@ -1,1 +1,1 @@
-export { default as IPod } from './components/IPod';
+export { default as IPod } from './components/IPod'
