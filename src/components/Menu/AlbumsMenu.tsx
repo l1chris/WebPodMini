@@ -1,7 +1,7 @@
 import { useImperativeHandle, forwardRef } from 'react'
 import { useMenu } from '../../hooks/useMenu'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
-import { SubMenuHandle } from '../types/menuTypes'
+import { SubMenuHandle } from '../../types/menuTypes'
 
 enum AlbumOption {
   DownHills = 'down-hills',
