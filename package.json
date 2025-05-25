@@ -2,7 +2,9 @@
   "name": "ipod-project",
   "private": true,
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "version": "0.0.1",
   "main": "./dist/ipod-project.js",
   "module": "./dist/ipod-project.mjs",

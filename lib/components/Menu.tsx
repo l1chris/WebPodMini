@@ -25,7 +25,7 @@ enum MenuOption {
 
 const Menu = forwardRef<MainMenuHandle>((props, ref) => {
   const { menuPath, songPath } = useMenu()
-  const menuRef = useRef<SubMenuHandle>(null);
+  const menuRef = useRef<SubMenuHandle>(null)
   const currentMenu = menuPath[menuPath.length - 1] as MenuOption
 
   const updateIndex = (scrollDirection: string) => {

@@ -1,16 +1,17 @@
 import { useImperativeHandle, forwardRef } from 'react'
 import { useMenu } from '../../hooks/useMenu'
+import { useMusic } from '../../hooks/useMusic'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
-import { SongOption } from '../../constants/songOptions'
 import { SubMenuHandle } from '../../types/menuTypes'
 
 const SongsMenu = forwardRef<SubMenuHandle>((props, ref) => {
-  const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(SongOption).length - 1)
+  const { songs } = useMusic()
+  const { selectedIndex, updateIndex } = useUpdateIndex(songs.length - 1)
   const { navigateToMenu, goBack, setSongPath } = useMenu()
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'center-button') {
-      const selectedSong = Object.values(SongOption)[selectedIndex] as SongOption
+      const selectedSong = songs[selectedIndex].url
       setSongPath(selectedSong)
 
       navigateToMenu('nowPlaying')
@@ -24,18 +25,14 @@ const SongsMenu = forwardRef<SubMenuHandle>((props, ref) => {
     handleSelect,
   }))
 
-  const getSongNameFromFilePath = (path: string) => {
-    return path.match(/\/([^/]+)\.mp3$/)?.[1] ?? 'Unknown Title'
-  }
-
   return (
     <div className="menu">
       <div className="title">Music</div>
 
       <div className="menu-items">
-        {Object.keys(SongOption).map((songKey, index) => (
-          <div key={index} className={`menu-item ${selectedIndex === index ? 'selected' : ''}`}>
-            {getSongNameFromFilePath(SongOption[songKey as keyof typeof SongOption])}
+        {songs.map((song, index) => (
+          <div key={song.id} className={`menu-item ${selectedIndex === index ? 'selected' : ''}`}>
+            {song.title}
             <span className="chevron right"></span>
           </div>
         ))}

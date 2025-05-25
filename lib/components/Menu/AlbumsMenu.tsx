@@ -1,15 +1,14 @@
 import { useImperativeHandle, forwardRef } from 'react'
 import { useMenu } from '../../hooks/useMenu'
+import { useMusic } from '../../hooks/useMusic'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
 import { SubMenuHandle } from '../../types/menuTypes'
 
-enum AlbumOption {
-  DownHills = 'down-hills',
-}
-
 const AlbumsMenu = forwardRef<SubMenuHandle>((props, ref) => {
-  const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(AlbumOption).length - 1)
   const { navigateToMenu, goBack } = useMenu()
+  const { songs } = useMusic()
+  const albumNames = Array.from(new Set(songs.map((song) => song.album)))
+  const { selectedIndex, updateIndex } = useUpdateIndex(albumNames.length - 1)
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'center-button') {
@@ -29,10 +28,12 @@ const AlbumsMenu = forwardRef<SubMenuHandle>((props, ref) => {
       <div className="title">Albums</div>
 
       <div className="menu-items">
-        <div className={`menu-item ${selectedIndex === 0 ? 'selected' : ''}`}>
-          Down Hills
-          <span className="chevron right"></span>
-        </div>
+        {albumNames.map((album, index) => (
+          <div key={album} className={`menu-item ${selectedIndex === index ? 'selected' : ''}`}>
+            {album}
+            <span className="chevron right"></span>
+          </div>
+        ))}
       </div>
     </div>
   )

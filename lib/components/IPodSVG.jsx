@@ -62,13 +62,14 @@ const IPodSVG = ({ className, onBtnClick, onDimensionsChange, onScroll }) => {
   }
 
   const handleTouchStart = (e) => {
-    if (e.touches.length === 1) { // Ensure single finger touch
-      setIsDragging(true);
-      const touch = e.touches[0];
-      const initialAngle = calculateAngle(touch.clientX, touch.clientY);
-      setLastAngle(initialAngle);
+    if (e.touches.length === 1) {
+      // Ensure single finger touch
+      setIsDragging(true)
+      const touch = e.touches[0]
+      const initialAngle = calculateAngle(touch.clientX, touch.clientY)
+      setLastAngle(initialAngle)
     }
-  };
+  }
 
   const handleMouseMove = (e) => {
     if (!isDragging) return
@@ -81,15 +82,15 @@ const IPodSVG = ({ className, onBtnClick, onDimensionsChange, onScroll }) => {
   }
 
   const handleTouchMove = (e) => {
-    if (!isDragging || e.touches.length !== 1) return;
-  
-    const touch = e.touches[0];
-    const currentAngle = calculateAngle(touch.clientX, touch.clientY);
+    if (!isDragging || e.touches.length !== 1) return
+
+    const touch = e.touches[0]
+    const currentAngle = calculateAngle(touch.clientX, touch.clientY)
 
     if (lastAngle !== null) {
       handleScrollDirectionChange(currentAngle)
     }
-  };
+  }
 
   const handleScrollDirectionChange = (currentAngle) => {
     const now = Date.now()

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import '../styles/iPod.scss'
 import { MenuProvider } from '../providers/MenuProvider.tsx'
+import { MusicProvider } from '../providers/MusicProvider.tsx'
 import Menu from './Menu.tsx'
 import { MainMenuHandle } from '../types/menuTypes'
 
@@ -14,7 +15,7 @@ const IPod: React.FC = () => {
     y: 0,
   })
 
-  const menuRef = useRef<MainMenuHandle>(null);
+  const menuRef = useRef<MainMenuHandle>(null)
 
   const handleBtnClick = (event: any) => {
     if (menuRef.current) {
@@ -46,9 +47,11 @@ const IPod: React.FC = () => {
           height: rectDimensions.height * 0.9,
         }}
       >
-        <MenuProvider>
-          <Menu ref={menuRef} />
-        </MenuProvider>
+        <MusicProvider>
+          <MenuProvider>
+            <Menu ref={menuRef} />
+          </MenuProvider>
+        </MusicProvider>
       </div>
     </div>
   )

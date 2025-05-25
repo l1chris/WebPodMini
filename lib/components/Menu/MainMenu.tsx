@@ -1,9 +1,9 @@
 import { useImperativeHandle, forwardRef } from 'react'
-import { SongOption, NumberOfSongs } from '../../constants/songOptions'
 import { useAudio } from '../../hooks/useAudio'
 import { useMenu } from '../../hooks/useMenu'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
 import { SubMenuHandle } from '../../types/menuTypes'
+import { useMusic } from '../../hooks/useMusic'
 
 enum MainMenuOption {
   Music = 'music',
@@ -15,6 +15,7 @@ const MainMenu = forwardRef<SubMenuHandle>((props, ref) => {
   const { selectedIndex, updateIndex } = useUpdateIndex(Object.keys(MainMenuOption).length - 1)
   const { restartSong } = useAudio()
   const { navigateToMenu, goBack, setSongPath } = useMenu()
+  const { songs } = useMusic()
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'center-button') {
@@ -28,8 +29,8 @@ const MainMenu = forwardRef<SubMenuHandle>((props, ref) => {
           break
         }
         case 2: {
-          const randomIndex = Math.floor(Math.random() * NumberOfSongs)
-          const selectedSong = Object.values(SongOption)[randomIndex] as SongOption
+          const randomIndex = Math.floor(Math.random() * songs.length)
+          const selectedSong = songs[randomIndex].url
           setSongPath(selectedSong)
           restartSong()
           navigateToMenu(MainMenuOption.ShuffleSongs)

@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { SongOption } from '../constants/songOptions'
 import { AudioContext } from '../contexts/AudioContext'
 import { useMenu } from '../hooks/useMenu'
+import { useMusic } from '../hooks/useMusic'
+import { SongMetadata } from '../contexts/MusicContext'
 
 export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { setSongPath } = useMenu()
+  const { songs } = useMusic()
 
   const audioRef = useRef<HTMLAudioElement>(new Audio())
 
@@ -48,11 +50,10 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     audioRef.current.currentTime = 0
   }
 
-  const playNextSong = (currentSongPath: string) => {
-    const songs = Object.values(SongOption) as string[]
-    const currentIndex = songs.indexOf(currentSongPath)
+  const playNextSong = (currentSongUrl: SongMetadata['url']) => {
+    const currentIndex = songs.findIndex((song) => song.url === currentSongUrl)
     const nextIndex = (currentIndex + 1) % songs.length
-    const nextSong = songs[nextIndex] as SongOption
+    const nextSong = songs[nextIndex].url
 
     setSongPath(nextSong)
   }
