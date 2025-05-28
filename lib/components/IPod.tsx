@@ -17,13 +17,13 @@ const IPod: React.FC = () => {
 
   const menuRef = useRef<MainMenuHandle>(null)
 
-  const handleBtnClick = (event: any) => {
+  const handleBtnClick = (event: string) => {
     if (menuRef.current) {
       menuRef.current.updateMenu(event)
     }
   }
 
-  const handleScroll = (event: any) => {
+  const handleScroll = (event: string) => {
     if (menuRef.current) {
       menuRef.current.updateIndex(event)
     }
