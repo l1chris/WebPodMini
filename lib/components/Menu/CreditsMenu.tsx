@@ -31,7 +31,7 @@ const CreditsMenu = forwardRef<SubMenuHandle>((props, ref) => {
     <div className="menu">
       <div className="title">Credits</div>
 
-      <div className="menu-items scrollable" ref={scrollableRef}>
+      <div className="menu-items credits" ref={scrollableRef}>
         <br />
         <span>Image Credit:</span>
         <br />
