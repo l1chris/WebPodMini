@@ -1,8 +1,20 @@
+* {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+body {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #222;
+  background-color: #ddd;
+}
+
 #root {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90vh;
-  background-color: #ddd;
 }
-

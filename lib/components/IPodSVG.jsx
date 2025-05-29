@@ -42,7 +42,7 @@ const IPodSVG = ({ className, onBtnClick, onDimensionsChange, onScroll }) => {
         setCenterY(bbox.y + bbox.height / 2)
       }
     }
-    
+
     // Update on resize
     window.addEventListener('resize', updateCenter)
 

@@ -43,11 +43,7 @@ const MusicMenu = forwardRef<SubMenuHandle>((props, ref) => {
   }))
 
   return (
-    <MenuView
-      title="Music"
-      items={['Artists', 'Albums', 'Songs']}
-      selectedIndex={selectedIndex}
-    />
+    <MenuView title="Music" items={['Artists', 'Albums', 'Songs']} selectedIndex={selectedIndex} />
   )
 })
 
