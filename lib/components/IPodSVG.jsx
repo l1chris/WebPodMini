@@ -34,6 +34,21 @@ const IPodSVG = ({ className, onBtnClick, onDimensionsChange, onScroll }) => {
     }
   }, [onDimensionsChange])
 
+  useEffect(() => {
+    const updateCenter = () => {
+      if (clickWheelRef.current) {
+        const bbox = clickWheelRef.current.getBoundingClientRect()
+        setCenterX(bbox.x + bbox.width / 2)
+        setCenterY(bbox.y + bbox.height / 2)
+      }
+    }
+    
+    // Update on resize
+    window.addEventListener('resize', updateCenter)
+
+    return () => window.removeEventListener('resize', updateCenter)
+  }, [])
+
   const handleClick = (event) => {
     event.target.id == 'left-button-overlay'
       ? onBtnClick('left-button')
