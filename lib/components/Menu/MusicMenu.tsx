@@ -2,7 +2,7 @@ import { useImperativeHandle, forwardRef } from 'react'
 import { useMenu } from '../../hooks/useMenu'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
 import { SubMenuHandle } from '../../types/menuTypes'
-import GenericMenu from './GenericMenu'
+import MenuView from './MenuView'
 
 enum MusicOption {
   Artists = 'artists',
@@ -43,7 +43,7 @@ const MusicMenu = forwardRef<SubMenuHandle>((props, ref) => {
   }))
 
   return (
-    <GenericMenu
+    <MenuView
       title="Music"
       items={['Artists', 'Albums', 'Songs']}
       selectedIndex={selectedIndex}

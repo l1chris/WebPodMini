@@ -4,7 +4,7 @@ import { useMenu } from '../../hooks/useMenu'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
 import { SubMenuHandle } from '../../types/menuTypes'
 import { useMusic } from '../../hooks/useMusic'
-import GenericMenu from './GenericMenu'
+import MenuView from './MenuView'
 
 enum MainMenuOption {
   Music = 'music',
@@ -51,7 +51,7 @@ const MainMenu = forwardRef<SubMenuHandle>((props, ref) => {
   }))
 
   return (
-    <GenericMenu
+    <MenuView
       title="webPod Mini"
       items={['Music', 'Extras', 'Shuffle Songs']}
       selectedIndex={selectedIndex}

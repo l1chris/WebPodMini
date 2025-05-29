@@ -1,12 +1,12 @@
 import React, { useRef, useEffect } from 'react'
 
-type GenericMenuProps = {
+type MenuViewProps = {
   title: string
   items: string[]
   selectedIndex: number
 }
 
-const GenericMenu: React.FC<GenericMenuProps> = ({ title, items, selectedIndex }) => {
+const MenuView: React.FC<MenuViewProps> = ({ title, items, selectedIndex }) => {
   const scrollableRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<(HTMLDivElement | null)[]>([])
 
@@ -37,4 +37,4 @@ const GenericMenu: React.FC<GenericMenuProps> = ({ title, items, selectedIndex }
   )
 }
 
-export default GenericMenu
+export default MenuView
