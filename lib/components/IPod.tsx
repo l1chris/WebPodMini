@@ -44,7 +44,7 @@ const IPod: React.FC = () => {
           top: 30,
           left: 35.5,
           width: rectDimensions.width - 5,
-          height: rectDimensions.height,
+          height: rectDimensions.height - 5,
           pointerEvents: 'none',
         }}
       >
