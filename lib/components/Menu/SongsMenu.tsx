@@ -1,17 +1,17 @@
-import { useImperativeHandle, forwardRef, useRef } from 'react'
+import { useImperativeHandle, forwardRef } from 'react'
 import { useMenu } from '../../hooks/useMenu'
 import { useMusic } from '../../hooks/useMusic'
 import { useScrollIntoView } from '../../hooks/useScrollIntoView'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
 import { SubMenuHandle } from '../../types/menuTypes'
+import GenericMenu from './GenericMenu'
 
 const SongsMenu = forwardRef<SubMenuHandle>((props, ref) => {
   const { songs } = useMusic()
+  const songNames = Array.from(new Set(songs.map((song) => song.title)))
   const { selectedIndex, updateIndex: baseUpdateIndex } = useUpdateIndex(songs.length - 1)
   const { navigateToMenu, goBack, setSongPath } = useMenu()
-  const { setRef, scrollSelectedIntoView } = useScrollIntoView<HTMLDivElement>()
-
-  const scrollableRef = useRef<HTMLDivElement>(null)
+  const { scrollSelectedIntoView } = useScrollIntoView<HTMLDivElement>()
 
   const handleSelect = (clickedButtonName: string) => {
     if (clickedButtonName === 'center-button') {
@@ -34,24 +34,7 @@ const SongsMenu = forwardRef<SubMenuHandle>((props, ref) => {
     handleSelect,
   }))
 
-  return (
-    <div className="menu">
-      <div className="title">Music</div>
-
-      <div className="menu-items scrollable" ref={scrollableRef}>
-        {songs.map((song, index) => (
-          <div
-            key={song.id}
-            ref={setRef(index)}
-            className={`menu-item ${selectedIndex === index ? 'selected' : ''}`}
-          >
-            {song.title}
-            <span className="chevron right"></span>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
+  return <GenericMenu title="Music" items={songNames} selectedIndex={selectedIndex} />
 })
 
 export default SongsMenu

@@ -2,6 +2,7 @@ import { useImperativeHandle, forwardRef } from 'react'
 import { useMenu } from '../../hooks/useMenu'
 import { useUpdateIndex } from '../../hooks/useUpdateIndex'
 import { SubMenuHandle } from '../../types/menuTypes'
+import GenericMenu from './GenericMenu'
 
 const ExtrasMenu = forwardRef<SubMenuHandle>((props, ref) => {
   const { selectedIndex, updateIndex } = useUpdateIndex(0)
@@ -20,18 +21,7 @@ const ExtrasMenu = forwardRef<SubMenuHandle>((props, ref) => {
     handleSelect,
   }))
 
-  return (
-    <div className="menu">
-      <div className="title">Extras</div>
-
-      <div className="menu-items">
-        <div className={`menu-item ${selectedIndex === 0 ? 'selected' : ''}`}>
-          Credits
-          <span className="chevron right"></span>
-        </div>
-      </div>
-    </div>
-  )
+  return <GenericMenu title="Extras" items={['Credits']} selectedIndex={selectedIndex} />
 })
 
 export default ExtrasMenu
