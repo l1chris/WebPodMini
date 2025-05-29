@@ -4,38 +4,10 @@ import { MusicContext, SongMetadata } from '../contexts/MusicContext'
 const sampleSongs: SongMetadata[] = [
   {
     id: '1',
-    title: 'Altara',
-    artist: 'ChauSara',
-    album: 'DownHills',
-    url: '/music/Altara.mp3',
-  },
-  {
-    id: '2',
-    title: 'Arsanis',
-    artist: 'ChauSara',
-    album: 'DownHills',
-    url: '/music/Arsanis.mp3',
-  },
-  {
-    id: '3',
-    title: 'Felucia',
-    artist: 'ChauSara',
-    album: 'DownHills',
-    url: '/music/Felucia.mp3',
-  },
-  {
-    id: '4',
-    title: 'Nelyth',
-    artist: 'ChauSara',
-    album: 'DownHills',
-    url: '/music/Nelyth.mp3',
-  },
-  {
-    id: '5',
-    title: 'Treya',
-    artist: 'ChauSara',
-    album: 'DownHills',
-    url: '/music/Treya.mp3',
+    title: 'Title',
+    artist: 'Artist',
+    album: 'Album',
+    url: '/music/filename.mp3',
   },
 ]
 

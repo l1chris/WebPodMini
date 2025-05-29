@@ -39,10 +39,6 @@ const CreditsMenu = forwardRef<SubMenuHandle>((props, ref) => {
         <span>Original SVG file by House, CC BY-SA 3.0 via Wikimedia Commons.</span>
         <br />
         <br />
-        <span>Music Credit:</span>
-        <br />
-        <br />
-        <span>Music by Chau Sara</span>
       </div>
     </div>
   )
