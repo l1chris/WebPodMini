@@ -40,11 +40,12 @@ const IPod: React.FC = () => {
 
       <div
         style={{
-          position: 'relative',
-          top: rectDimensions.y * 0.93,
-          left: rectDimensions.x * 0.93,
-          width: rectDimensions.width * 0.93,
-          height: rectDimensions.height * 0.9,
+          position: 'absolute',
+          top: 30,
+          left: 35.5,
+          width: rectDimensions.width - 5,
+          height: rectDimensions.height,
+          pointerEvents: 'none',
         }}
       >
         <MusicProvider>

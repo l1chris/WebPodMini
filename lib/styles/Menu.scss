@@ -1,6 +1,6 @@
 $primary-color: #222;
 $background-color: #ddd;
-$menu-items-max-height: 77px;
+$menu-items-max-height: 65px;
 $selected-bg-color: #212121;
 $selected-text-color: #eeeeee;
 $scrollbar-thumb-color: #2b2a29;
@@ -16,7 +16,8 @@ $scrollbar-thumb-color: #2b2a29;
   display: flex;
   justify-content: center;
   border-bottom: 1px solid $primary-color;
-  padding: 2px 0;
+  padding: 2px 2px;
+  margin-bottom: 2px;
 }
 
 .menu-item {
